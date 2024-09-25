@@ -23,7 +23,7 @@
     <main class="main-content">
         <section class="main-editor-page">
             <div class="main-canvas">
-                <canvas width="500" height="500"></canvas>
+                <canvas width="500" height="500" onclick="onCanvasClick(event)"></canvas>
             </div>
             <div class="main-edit-tools">
                 <input class="line-txt-input" type="text" placeholder="Enter text ">
@@ -54,6 +54,7 @@
         <small>&copy 2024 - Zohar Yevelkin</small>
     </footer>
 
+    <script src="js/services/line.service.js"></script>
     <script src="js/services/gallery.service.js"></script>
     <script src="js/services/meme.service.js"></script>
     <script src="js/gallery.controller.js"></script>

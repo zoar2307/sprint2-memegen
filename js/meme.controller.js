@@ -3,7 +3,8 @@
 var gElCanvas
 var gCtx
 var gSize = 40
-var gLastRect = { x: 0, y: 0, width: 0, size: 0 }
+const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
+
 
 function onInit() {
     gElCanvas = document.querySelector('canvas')
@@ -12,6 +13,7 @@ function onInit() {
     renderMeme()
     updateFontSizeDisplay()
     updateSelectedLineDisplay()
+
 }
 
 function renderMeme(src = 'meme-imgs/meme-imgs (square)/1.jpg') {
@@ -35,7 +37,7 @@ function renderMeme(src = 'meme-imgs/meme-imgs (square)/1.jpg') {
                 y = gElCanvas.height / 2
             }
             onDrawText(line.txt, line.size, line.color, x, y, idx)
-            if (getLine(idx).isSelected) {
+            if (idx === gMeme.selectedLineIdx) {
                 drawRect()
             }
 
@@ -58,7 +60,7 @@ function onDrawText(text, size = 40, color = 'white', x, y, idx) {
 
     setLineCoords(x, y, idx)
     setLineTextWidth(gCtx.measureText(text).width, idx)
-    drawRect()
+
 
 }
 
@@ -67,24 +69,19 @@ function drawRect() {
     const pos = getSelectedLineCoords()
     const line = getLine(getSelectedLineIdx())
 
-    gLastRect = { x: pos.x, y: pos.y, width: line.width, size: line.size }
     gCtx.beginPath()
 
     gCtx.lineWidth = 1
     gCtx.strokeStyle = 'purple'
     gCtx.rect(pos.x - line.width, pos.y - line.size, line.width * 2, line.size * 2)
     gCtx.stroke()
-    //* THE SAME
 
 }
 
 function addTextLine() {
     const elColorInput = document.querySelector('.fill-color')
-    const elLineTextInput = document.querySelector('.line-txt-input')
 
-    if (!elLineTextInput.value.trim()) return
-    setTextLine(elLineTextInput.value, gSize, elColorInput.value)
-    elLineTextInput.value = ''
+    setTextLine('NewLine', gSize, elColorInput.value)
 
     setSelectedLine(gMeme.lines.length - 1)
     updateSelectedLineDisplay()
@@ -130,7 +127,55 @@ function updateSelectedLineDisplay() {
     const elLineSelectedSpan = document.querySelector('.line-selected-span')
     elLineSelectedSpan.innerText = getSelectedLineIdx() + 1
     renderMeme()
+}
+
+
+function onCanvasClick(ev) {
+    const pos = getEvPos(ev)
+
+    if (!isLineClicked(pos)) return
+    console.log('true')
+    renderMeme()
+
+    const idx = getSelectedLineIdx()
+    console.log(idx)
+
+    const elInput = document.querySelector('.line-txt-input')
+    elInput.value = getSelectedLineText()
+    elInput.addEventListener('input', function () {
+        updateSelectedLineText(elInput.value)
+        renderMeme()
+    })
+
+    elInput.addEventListener('blur', function () {
+        elInput.value = ''
+        setSelectedLine()
+        renderMeme()
+
+    })
+
+
+
+
 
 }
 
 
+
+function getEvPos(ev) {
+
+    let pos = {
+        x: ev.offsetX,
+        y: ev.offsetY,
+    }
+
+    if (TOUCH_EVS.includes(ev.type)) {
+        ev.preventDefault()
+        ev = ev.changedTouches[0]
+        pos = {
+            x: ev.clientX - ev.target.offsetLeft - ev.target.clientLeft,
+            y: ev.clientY - ev.target.offsetTop - ev.target.clientTop,
+        }
+    }
+    return pos
+}

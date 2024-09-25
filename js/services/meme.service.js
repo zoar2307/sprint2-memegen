@@ -7,14 +7,7 @@ var gMeme = {
     selectedImgId: 5,
     selectedLineIdx: 0,
     lines: [
-        {
-            txt: 'Add Text...',
-            pos: {},
-            width: 0,
-            size: 20,
-            color: 'white',
-            isSelected: false
-        }
+
     ]
 
 
@@ -34,7 +27,6 @@ function setTextLine(txt, size, color) {
             width: 0,
             size,
             color,
-            isSelected: false
         }
     )
 }
@@ -42,15 +34,16 @@ function setTextLine(txt, size, color) {
 function setImg(id) {
     gMeme.selectedImgId = id
     gMeme.lines = [
-        {
-            txt: 'Add Text...',
-            pos: {},
-            width: 0,
-            size: 20,
-            color: 'white',
-            isSelected: false
-        }
+
     ]
+}
+
+function updateSelectedLineText(text) {
+    gMeme.lines[getSelectedLineIdx()].txt = text
+}
+
+function getSelectedLineText() {
+    return gMeme.lines[getSelectedLineIdx()].txt
 }
 
 function setLineTextWidth(width, idx) {
@@ -69,16 +62,12 @@ function setLineCoords(x, y, idx) {
     gMeme.lines[idx].pos = { x, y }
 }
 
-
 function getSelectedLineCoords() {
     return gMeme.lines[getSelectedLineIdx()].pos
 }
 
 function setSelectedLine(idx) {
-    for (let i = 0; i < gMeme.lines.length; i++) {
-        gMeme.lines[i].isSelected = false
-    }
-    gMeme.lines[idx].isSelected = true
+    if (!idx && idx !== 0) gMeme.selectedLineIdx = null
     gMeme.selectedLineIdx = idx
 }
 
