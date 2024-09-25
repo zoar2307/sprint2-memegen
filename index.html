@@ -8,35 +8,83 @@
     <title>Memeco - Meme Generator</title>
 </head>
 
-<body onload="onInit()">
+<body class="main-layout" onload="onInit()">
 
-    <header class="main-header">
-        <div class="logo">Memeco</div>
-        <nav class="main-nav">
-            <ul class="main-nav-list">
-                <li><a href="#">Gallery</a></li>
-                <li><a href="#">About!</a></li>
-            </ul>
-        </nav>
+    <header class="main-header full main-layout ">
+        <div class="main-header-content flex space-between align-center">
+            <div class="logo">Memeco</div>
+            <nav class="main-nav">
+                <ul class="main-nav-list clean-list flex align-center">
+                    <li><a class="active" href="#">Gallery</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main class="main-content">
-        <section class="main-editor-page">
+        <section class="main-editor-page editor-page-layout">
             <div class="main-canvas">
-                <canvas width="500" height="500" onclick="onCanvasClick(event)"></canvas>
+                <canvas width="540" height="540" onclick="onCanvasClick(event)"></canvas>
             </div>
-            <div class="main-edit-tools">
-                <input class="line-txt-input" type="text" placeholder="Enter text ">
-                <button class="add-line-btn btn" onclick="addTextLine()">+</button>
-                <a href="#" class="btn" onclick="onDownloadImg(this)" download="my-img.jpg">Download Image from
+            <div class="main-edit-tools flex col">
+                <div>
+                    <input class="line-txt-input" type="text" placeholder="Click on line or add one">
+                </div>
+                <div class="flex center line-mod">
+                    <button class="line-selector add-line-btn btn " onclick="onSelectedLine(1)">
+                        <img src="ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt="">
+
+                    </button>
+                    <button class="add-line-btn btn" onclick="addTextLine()">
+                        <img src="ICONS/add.png" alt="">
+
+                    </button>
+                    <button class="btn" onclick="addTextLine()">
+                        <img src="ICONS/trash.png" alt="">
+                    </button>
+
+                </div>
+
+                <div class="flex center font-edit">
+                    <button class="btn" onclick="onChangeFontSize(1)">
+                        <img src="ICONS/increase font - icon.png" alt="">
+                    </button>
+                    <button class="btn" onclick="onChangeFontSize(-1)">
+                        <img src="ICONS/decrease font - icon.png" alt="">
+                    </button>
+                    <button class="btn">
+                        <img src="ICONS/align-to-left.png" alt="">
+                    </button>
+                    <button class="btn">
+                        <img src="ICONS/center-text-alignment.png" alt="">
+                    </button>
+                    <button class="btn">
+                        <img src="ICONS/align-to-right.png" alt="">
+                    </button>
+
+                </div>
+
+
+                <div class="flex center color-mod">
+                    <select class="" name="" id="">
+                        <option value="">1</option>
+                        <option value="">1</option>
+                        <option value="">1</option>
+                    </select>
+                    <div class="btn"><img src="ICONS/text stroke.png" alt=""></div>
+                    <input type="color" name="fill-clr" id="fill-clr" class="fill-color btn">
+                </div>
+
+                <a href=" #" class="btn" onclick="onDownloadImg(this)" download="my-img.jpg">Download Image from
                     Canvas</a>
-                <input type="color" name="fill-clr" id="fill-clr" class="fill-color">
-                <button onclick="onChangeFontSize(1)">+</button>
-                <button onclick="onChangeFontSize(-1)">-</button>
-                <span class="font-size-span">font</span>
-                <button onclick="onSelectedLine(1)">+</button>
-                <button onclick="onSelectedLine(-1)">-</button>
-                <span class="line-selected-span">line</span>
+
+
+
+
+                <!-- <span class="font-size-span">font</span> -->
+                <!-- <button onclick="onSelectedLine(-1)">-</button> -->
+                <!-- <span class="line-selected-span">line</span> -->
 
 
 

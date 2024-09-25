@@ -1,5 +1,15 @@
 :root {
     /* Pallet */
 
+    --clr-primary-base: rgba(255, 127, 0, 1);
 
+    --clr-secondary-base: rgba(4, 10, 44, 1);
+    --clr-secondary--1: rgba(138, 138, 138, 1);
+    --clr-secondary--2: rgba(227, 227, 227, 1);
+    --clr-white: #ffffff;
+
+
+
+    /* Breakpoints */
+    --break-l: 1100px
 }

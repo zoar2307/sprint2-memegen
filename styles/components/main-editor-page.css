@@ -1,0 +1,70 @@
+.main-editor-page {
+    margin: 20px 0;
+    display: none;
+}
+
+
+
+.main-editor-page .main-edit-tools {
+    padding: 0 5em;
+}
+
+.main-editor-page .main-edit-tools .line-txt-input {
+    width: 100%;
+    font-size: 1.25em;
+    padding: 1.1em;
+
+    border: none;
+    border-radius: 0.6em;
+    margin-bottom: 0.4em;
+}
+
+.main-editor-page .main-edit-tools .line-mod {
+    gap: 1.06em;
+    margin-bottom: 2.5em;
+}
+
+
+.main-editor-page .main-edit-tools .btn {
+    height: 63px;
+    width: 63px;
+    border-radius: 0.6em;
+    border: none;
+    background: var(--clr-white);
+
+    cursor: pointer;
+}
+
+
+.main-editor-page .main-edit-tools .btn img {
+    padding: 0.75em;
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+}
+
+.main-editor-page .main-edit-tools .font-edit {
+    gap: 1.06em;
+    margin-bottom: 0.4em;
+}
+
+.main-editor-page .main-edit-tools .color-mod {
+    gap: 1.06em;
+    margin-bottom: 1.625em;
+
+
+}
+
+
+.main-editor-page .main-edit-tools select {
+    gap: 1.06em;
+    height: 63px;
+    padding: 1.56em;
+    border-radius: 0.6em;
+    border: none;
+    background: var(--clr-white);
+
+    cursor: pointer;
+    width: 221px;
+
+}

@@ -1,4 +1,17 @@
 .main-layout {
     display: grid;
-    grid-template-columns: 20px 1fr 20px;
+    grid-template-columns: minmax(20px, 1fr) minmax(auto, var(--break-l)) minmax(20px, 1fr);
+}
+
+.main-layout>*.full {
+    grid-column: 1 / -1;
+}
+
+.main-layout>*:not(.full) {
+    grid-column: 2;
+}
+
+.editor-page-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }

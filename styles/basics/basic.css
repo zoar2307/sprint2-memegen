@@ -3,6 +3,8 @@
 }
 
 html {
+    background-color: var(--clr-secondary--2);
+
     /* font-family: ; */
 }
 
@@ -13,4 +15,9 @@ body {
 
 canvas {
     background-color: lightblue;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
 }
