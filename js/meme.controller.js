@@ -2,12 +2,14 @@
 
 var gElCanvas
 var gCtx
+var gSize = 40
 
 function onInit() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
     renderGallery()
     renderMeme()
+    updateFontSizeDisplay()
 }
 
 function renderMeme(src = 'meme-imgs/meme-imgs (square)/1.jpg') {
@@ -53,15 +55,34 @@ function onDrawText(text, size = 40, color = 'white', x, y) {
 
 }
 
-function addTextLine(elInput, text, size = 40) {
+function addTextLine(elInput, text) {
     const elColorInput = document.querySelector('.fill-color')
-    setTextLine(text, size, elColorInput.value)
+    setTextLine(text, gSize, elColorInput.value)
     elInput.value = ''
     renderMeme()
 }
 
-
 function onDownloadImg(elLink) {
     const imgContent = gElCanvas.toDataURL('image/jpeg')
     elLink.href = imgContent
+}
+
+function onChangeFontSize(diff) {
+    if (gSize >= 80 && diff === 1) {
+        updateFontSizeDisplay()
+        return
+    }
+    if (gSize <= 16 && diff === -1) {
+        updateFontSizeDisplay()
+        return
+    }
+
+    gSize += 2 * diff
+    console.log(gSize)
+    updateFontSizeDisplay()
+}
+
+function updateFontSizeDisplay() {
+    const elFontSizeSpan = document.querySelector('.font-size-span')
+    elFontSizeSpan.innerText = gSize
 }
