@@ -24,7 +24,7 @@ function setTextLine(txt, size, color) {
     if (getMemeLinesCount() === 0) {
         pos = { x: gElCanvas.width / 2, y: 40 }
     } else if (getMemeLinesCount() === 1) {
-        pos = { x: gElCanvas.width / 2, y: -40 }
+        pos = { x: gElCanvas.width / 2, y: gElCanvas.height - 40 }
     } else if (getMemeLinesCount() > 1) {
         pos = { x: gElCanvas.width / 2, y: gElCanvas.height / 2 }
     }
@@ -36,6 +36,7 @@ function setTextLine(txt, size, color) {
             size,
             color,
             isDrag: false,
+            textAlignment: 'center'
         }
     )
 }
@@ -54,7 +55,6 @@ function setLineDrag(isDrag) {
 
 function removeLine() {
     const idx = getSelectedLineIdx()
-    console.log(idx)
     gMeme.lines.splice(idx, 1)
 }
 
@@ -74,7 +74,13 @@ function moveLine(dx, dy) {
     gMeme.lines[getSelectedLineIdx()].pos.y += dy
 }
 
+function setLineTextAlignment(alignment) {
+    gMeme.lines[getSelectedLineIdx()].textAlignment = alignment
+}
 
+function getLineTextAlignment(idx) {
+    return gMeme.lines[idx].textAlignment
+}
 
 function getMemeLinesCount() {
     return gMeme.lines.length

@@ -45,12 +45,13 @@ function renderMeme(src = 'meme-imgs/meme-imgs (square)/1.jpg') {
 
 function onDrawText(text, size = 40, color = 'white', idx) {
     const pos = getLineCoords(idx)
+    const textAlignment = getLineTextAlignment(idx)
     gCtx.lineWidth = 2.
     gCtx.strokeStyle = 'black'
 
     gCtx.fillStyle = color
     gCtx.font = `${size}px Impact`
-    gCtx.textAlign = 'center'
+    gCtx.textAlign = `${textAlignment}`
     gCtx.textBaseline = 'middle'
 
     gCtx.fillText(text, pos.x, pos.y)
@@ -70,16 +71,32 @@ function onDrawText(text, size = 40, color = 'white', idx) {
 
 function drawRect() {
     const pos = getSelectedLineCoords()
+    let copyPos = pos
     const line = getLine(getSelectedLineIdx())
+    const textAlignment = getLineTextAlignment(getSelectedLineIdx())
+    console.log(pos)
+    console.log(textAlignment)
+
 
     gCtx.beginPath()
 
     gCtx.lineWidth = 1
     gCtx.strokeStyle = 'purple'
     gCtx.fillStyle = 'rgba(255, 255, 255, 0.3)'
-    gCtx.rect(pos.x - line.width / 2 - 5, pos.y - line.size / 2 - 5, line.width + 10, line.size + 10)
+
+    // if (textAlignment === 'start') {
+    //     gCtx.rect(pos.x - 5, pos.y - line.size / 2 - 5, line.width + 10, line.size + 10)
+    // } else if (textAlignment === 'end') {
+    //     gCtx.rect(pos.x - line.width - 5, pos.y - line.size / 2 - 5, line.width + 10, line.size + 10)
+    // } else if (textAlignment === 'center') {
+    //     gCtx.rect(pos.x - line.width / 2 - 5, pos.y - line.size / 2 - 5, line.width + 10, line.size + 10)
+
+    // }
+    gCtx.rect(pos.x - line.width - 5, pos.y - line.size / 2 - 5, line.width * 2 + 10, line.size + 10)
+
     gCtx.stroke()
     gCtx.fill()
+
 
 }
 
@@ -132,8 +149,6 @@ function onCanvasClick(ev) {
     if (!isLineClicked(pos)) return
     renderMeme()
 
-    const idx = getSelectedLineIdx()
-    console.log(idx)
 
     const elInput = document.querySelector('.line-txt-input')
     elInput.value = getSelectedLineText()
@@ -148,6 +163,11 @@ function onRemoveLine() {
     removeLine()
     const elInput = document.querySelector('.line-txt-input')
     elInput.value = ''
+    renderMeme()
+}
+
+function onAlignText(alignment) {
+    setLineTextAlignment(alignment)
     renderMeme()
 }
 
@@ -197,6 +217,7 @@ function onDown(ev) {
 }
 
 function onMove(ev) {
+    if (!getSelectedLineIdx() && getSelectedLineIdx() !== 0) return
     const line = getLine(getSelectedLineIdx())
     const isDrag = line.isDrag
     if (!isDrag) return
