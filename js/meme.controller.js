@@ -10,15 +10,15 @@ function onInit() {
     renderGallery()
     renderMeme()
     updateFontSizeDisplay()
+    updateSelectedLineDisplay()
 }
 
 function renderMeme(src = 'meme-imgs/meme-imgs (square)/1.jpg') {
     const elImg = new Image()
     let x
     let y
-    const id = gMeme.selectedImgId
 
-    elImg.src = getMeme(+id).url
+    elImg.src = getMeme().url
     elImg.onload = () => {
         gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
         gMeme.lines.forEach((line, idx) => {
@@ -33,7 +33,10 @@ function renderMeme(src = 'meme-imgs/meme-imgs (square)/1.jpg') {
                 x = gElCanvas.width / 2
                 y = gElCanvas.height / 2
             }
+            console.log(idx)
             onDrawText(line.txt, line.size, line.color, x, y)
+            setLineCoords(x, y, idx)
+
         })
     }
 }
@@ -60,6 +63,9 @@ function addTextLine() {
     if (!elLineTextInput.value.trim()) return
     setTextLine(elLineTextInput.value, gSize, elColorInput.value)
     elLineTextInput.value = ''
+
+    setSelectedLine(gMeme.lines.length - 1)
+    updateSelectedLineDisplay()
     renderMeme()
 }
 
@@ -69,17 +75,14 @@ function onDownloadImg(elLink) {
 }
 
 function onChangeFontSize(diff) {
-    if (gSize >= 80 && diff === 1) {
-        updateFontSizeDisplay()
+    if (gSize === 80 && diff === 1) {
         return
     }
-    if (gSize <= 16 && diff === -1) {
-        updateFontSizeDisplay()
+    if (gSize === 16 && diff === -1) {
         return
     }
 
     gSize += 2 * diff
-    console.log(gSize)
     updateFontSizeDisplay()
 }
 
@@ -87,3 +90,22 @@ function updateFontSizeDisplay() {
     const elFontSizeSpan = document.querySelector('.font-size-span')
     elFontSizeSpan.innerText = gSize
 }
+
+function onSelectedLine(diff) {
+    if (getSelectedline() === gMeme.lines.length - 1 && diff === 1) {
+        return
+    }
+    if (getSelectedline() === 0 && diff === -1) {
+        return
+    }
+
+    setSelectedLine(getSelectedline() + diff)
+    updateSelectedLineDisplay()
+}
+
+function updateSelectedLineDisplay() {
+    const elLineSelectedSpan = document.querySelector('.line-selected-span')
+    elLineSelectedSpan.innerText = getSelectedline() + 1
+}
+
+

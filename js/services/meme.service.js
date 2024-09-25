@@ -8,8 +8,8 @@ var gMeme = {
     selectedLineIdx: 0,
     lines: [
         {
-            txt: 'Add Text...'
-            ,
+            txt: 'Add Text...',
+            pos: {},
             size: 20,
             color: 'white'
         }
@@ -20,14 +20,15 @@ var gMeme = {
 
 _createMemes()
 
-function getMeme(id = 3) {
-    return gImgs.find(meme => meme.id === id)
+function getMeme() {
+    return gImgs.find(meme => meme.id === +gMeme.selectedImgId)
 }
 
 function setTextLine(txt, size, color) {
     gMeme.lines.push(
         {
             txt,
+            pos: {},
             size,
             color
         }
@@ -38,12 +39,32 @@ function setImg(id) {
     gMeme.selectedImgId = id
     gMeme.lines = [
         {
-            txt: 'Add Text...'
-            ,
+            txt: 'Add Text...',
+            pos: {},
             size: 20,
             color: 'white'
         }
     ]
+}
+
+
+function getSelectedline() {
+    return gMeme.selectedLineIdx
+}
+
+function setLineCoords(x, y, idx) {
+    gMeme.lines[idx].pos = { x, y }
+    console.log(gMeme.lines[idx].pos)
+}
+
+
+function getSelectedLineCoords() {
+    console.log(gMeme.lines[0].pos)
+    return gMeme.lines[0].pos
+}
+
+function setSelectedLine(idx) {
+    gMeme.selectedLineIdx = idx
 }
 
 function _createMemes() {
