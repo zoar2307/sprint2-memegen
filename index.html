@@ -26,7 +26,8 @@
                 <canvas width="500" height="500"></canvas>
             </div>
             <div class="main-edit-tools">
-                <input type="text" placeholder="Enter text " onblur="addTextLine(this,this.value)">
+                <input class="line-txt-input" type="text" placeholder="Enter text ">
+                <button class="add-line-btn btn" onclick="addTextLine()">+</button>
                 <a href="#" class="btn" onclick="onDownloadImg(this)" download="my-img.jpg">Download Image from
                     Canvas</a>
                 <input type="color" name="fill-clr" id="fill-clr" class="fill-color">

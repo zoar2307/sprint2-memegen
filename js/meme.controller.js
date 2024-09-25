@@ -51,14 +51,15 @@ function onDrawText(text, size = 40, color = 'white', x, y) {
 
     gCtx.fillText(text, x, y)
     gCtx.strokeText(text, x, y)
-
-
 }
 
-function addTextLine(elInput, text) {
+function addTextLine() {
     const elColorInput = document.querySelector('.fill-color')
-    setTextLine(text, gSize, elColorInput.value)
-    elInput.value = ''
+    const elLineTextInput = document.querySelector('.line-txt-input')
+
+    if (!elLineTextInput.value.trim()) return
+    setTextLine(elLineTextInput.value, gSize, elColorInput.value)
+    elLineTextInput.value = ''
     renderMeme()
 }
 
