@@ -27,7 +27,7 @@ function renderMeme(src = 'meme-imgs/meme-imgs (square)/1.jpg') {
             } else if (idx === 1) {
                 x = gElCanvas.width / 2
                 y = gElCanvas.height - 40
-            } else if (idx > 2) {
+            } else if (idx > 1) {
                 x = gElCanvas.width / 2
                 y = gElCanvas.height / 2
             }
@@ -53,8 +53,15 @@ function onDrawText(text, size = 40, color = 'white', x, y) {
 
 }
 
-function addTextLine(elInput, text, size = 40, color = 'white') {
-    setTextLine(text, size, color)
+function addTextLine(elInput, text, size = 40) {
+    const elColorInput = document.querySelector('.fill-color')
+    setTextLine(text, size, elColorInput.value)
     elInput.value = ''
     renderMeme()
+}
+
+
+function onDownloadImg(elLink) {
+    const imgContent = gElCanvas.toDataURL('image/jpeg')
+    elLink.href = imgContent
 }
