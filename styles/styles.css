@@ -1,0 +1,13 @@
+/* setups */
+@import url('setups/vars.css');
+@import url('setups/typography.css');
+
+/* basics */
+@import url('basics/basic.css');
+@import url('basics/layout.css');
+@import url('basics/helpers.css');
+
+/* components  */
+
+/* mq */
+@import url('setups/mq.css');

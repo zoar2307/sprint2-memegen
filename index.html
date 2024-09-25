@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/styles.css">
+    <title>Memeco - Meme Generator</title>
+</head>
+
+<body onload="onInit()">
+
+    <header class="main-header">
+        <div class="logo">Memeco</div>
+        <nav class="main-nav">
+            <ul class="main-nav-list">
+                <li><a href="#">Galle!ry</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <section class="main-editor-page">
+            <div class="main-canvas">
+                <canvas width="500" height="500"></canvas>
+            </div>
+            <div class="main-edit-tools">
+                <input type="text" placeholder="Enter text " onblur="addTextLine(this,this.value)">
+            </div>
+        </section>
+
+        <section class="main-gallery-page">
+            <div class="image-gallery"></div>
+        </section>
+
+        <section class="main-about-page"></section>
+    </main>
+    <footer>
+        <div class="logo">Memeco</div>
+        <small>&copy 2024 - Zohar Yevelkin</small>
+    </footer>
+
+    <script src="js/services/gallery.service.js"></script>
+    <script src="js/services/meme.service.js"></script>
+    <script src="js/gallery.controller.js"></script>
+    <script src="js/meme.controller.js"></script>
+</body>
+
+</html>
