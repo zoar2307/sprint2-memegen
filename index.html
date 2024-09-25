@@ -13,7 +13,7 @@
     <header class="main-header full main-layout ">
         <div class="main-header-content flex space-between align-center">
             <div class="logo">Memeco</div>
-            <nav class="main-nav">
+            <nav class="main-nav open">
                 <ul class="main-nav-list clean-list flex align-center">
                     <li><a class="active" href="#">Gallery</a></li>
                     <li><a href="#">About</a></li>
@@ -28,7 +28,7 @@
 
         </div>
     </header>
-    <div class="gallery-header main-layout full hidden">
+    <div class="gallery-header main-layout full ">
         <div class="flex space-between align-center">
             <div class="search-bar flex space-between align-center">
                 <input type="text" placeholder="Enter search keyword">
@@ -43,7 +43,7 @@
     </div>
 
     <main class="main-content ">
-        <section class="main-editor-page editor-page-layout ">
+        <section class="main-editor-page editor-page-layout hidden">
             <div class="main-canvas">
                 <canvas width="540" height="540" onclick="onCanvasClick(event)"></canvas>
             </div>
@@ -60,7 +60,7 @@
                         <img src="ICONS/add.png" alt="">
 
                     </button>
-                    <button class="btn" onclick="addTextLine()">
+                    <button class="btn" onclick="">
                         <img src="ICONS/trash.png" alt="">
                     </button>
 
@@ -88,12 +88,12 @@
 
                 <div class="flex center color-mod">
                     <select class="" name="" id="">
-                        <option value="">1</option>
+                        <option value="impact">Impact</option>
                         <option value="">1</option>
                         <option value="">1</option>
                     </select>
                     <div class="btn"><img src="ICONS/text stroke.png" alt=""></div>
-                    <input type="color" name="fill-clr" id="fill-clr" class="fill-color btn">
+                    <input type="color" name="fill-clr" id="fill-clr" class="fill-color btn" value="#ffffff">
                 </div>
 
                 <a href=" #" class="btn" onclick="onDownloadImg(this)" download="my-img.jpg">Download</a>
@@ -101,16 +101,10 @@
 
 
 
-                <!-- <span class="font-size-span">font</span> -->
-                <!-- <button onclick="onSelectedLine(-1)">-</button> -->
-                <!-- <span class="line-selected-span">line</span> -->
-
-
-
             </div>
         </section>
 
-        <section class="main-gallery-page gallery-layout hidden">
+        <section class="main-gallery-page gallery-layout ">
 
         </section>
 

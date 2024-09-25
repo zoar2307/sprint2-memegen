@@ -1,6 +1,6 @@
 .main-layout {
     display: grid;
-    grid-template-columns: 5px auto 5px;
+    grid-template-columns: 5px 1fr 5px;
 }
 
 .main-layout>*.full {
@@ -18,10 +18,18 @@
     gap: 20px;
 }
 
+.editor-page-layout.hidden {
+    display: none;
+}
+
 .gallery-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 10px;
     row-gap: 10px;
 
+}
+
+.gallery-layout.hidden {
+    display: none;
 }

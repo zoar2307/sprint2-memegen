@@ -4,6 +4,13 @@
     height: 100px;
 }
 
+.gallery-header>div {
+    display: flex;
+    flex-direction: column;
+
+    padding: 1em;
+}
+
 .gallery-header div input {
     font-size: 1.1875em;
     padding: 0.315789em;

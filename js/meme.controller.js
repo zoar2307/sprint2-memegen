@@ -9,10 +9,10 @@ const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 function onInit() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
-    renderGallery()
     renderMeme()
-    resizeCanvas()
+    renderGallery()
     addListeners()
+
 }
 
 function resizeCanvas() {
@@ -44,6 +44,7 @@ function renderMeme(src = 'meme-imgs/meme-imgs (square)/1.jpg') {
             onDrawText(line.txt, line.size, line.color, x, y, idx)
             if (idx === gMeme.selectedLineIdx) {
                 drawRect()
+
             }
 
         })

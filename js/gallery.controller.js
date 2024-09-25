@@ -18,8 +18,10 @@ function renderGallery() {
 function onImgSelected(id) {
     const elEditorPage = document.querySelector('.main-editor-page')
     const elGallery = document.querySelector('.main-gallery-page')
+    const elGalleryHeader = document.querySelector('.gallery-header')
     elEditorPage.classList.remove('hidden')
     elGallery.classList.add('hidden')
+    elGalleryHeader.classList.add('hidden')
     setImg(id)
     renderMeme()
 }
