@@ -13,7 +13,7 @@
     <header class="main-header full main-layout ">
         <div class="main-header-content flex space-between align-center">
             <div class="logo">Memeco</div>
-            <nav class="main-nav open">
+            <nav class="main-nav ">
                 <ul class="main-nav-list clean-list flex align-center">
                     <li><a class="active" href="#">Gallery</a></li>
                     <li><a href="#">About</a></li>
@@ -52,7 +52,7 @@
                     <input class="line-txt-input" type="text" placeholder="Click on line or add one">
                 </div>
                 <div class="flex center line-mod">
-                    <button class="line-selector add-line-btn btn " onclick="onSelectedLine(1)">
+                    <button class="line-selector add-line-btn btn " onclick="onSelectedLine()">
                         <img src="ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt="">
 
                     </button>
@@ -60,7 +60,7 @@
                         <img src="ICONS/add.png" alt="">
 
                     </button>
-                    <button class="btn" onclick="">
+                    <button class="btn" onclick="onRemoveLine()">
                         <img src="ICONS/trash.png" alt="">
                     </button>
 
@@ -119,6 +119,7 @@
     <script src="js/services/gallery.service.js"></script>
     <script src="js/services/meme.service.js"></script>
     <script src="js/burger-menu.controller.js"></script>
+    <script src="js/active-nav.controller.js"></script>
     <script src="js/gallery.controller.js"></script>
     <script src="js/meme.controller.js"></script>
 </body>

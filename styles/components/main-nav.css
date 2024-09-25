@@ -1,5 +1,6 @@
 .main-nav .main-nav-list li a {
     position: relative;
+    width: 100vw;
     height: 60px;
     display: grid;
     place-items: center;
@@ -13,13 +14,6 @@
     padding: 1rem;
 }
 
-.main-nav .main-nav-list li:first-child a::after {
-    content: '';
-    border-right: 1px solid var(--clr-secondary--1);
-    position: absolute;
-    inset: 0 0 1px 0;
-    scale: 1 0.5;
-}
 
 .main-nav .main-nav-list li:last-child a {
     padding: 1rem;

@@ -24,4 +24,5 @@ function onImgSelected(id) {
     elGalleryHeader.classList.add('hidden')
     setImg(id)
     renderMeme()
+    resizeCanvas()
 }

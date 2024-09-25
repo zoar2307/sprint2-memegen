@@ -2,7 +2,6 @@
 
 var gElCanvas
 var gCtx
-var gSize = 40
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 
 
@@ -67,6 +66,12 @@ function onDrawText(text, size = 40, color = 'white', x, y, idx) {
     setLineCoords(x, y, idx)
     setLineTextWidth(gCtx.measureText(text).width, idx)
 
+    const elInput = document.querySelector('.line-txt-input')
+    elInput.value = getSelectedLineText()
+    elInput.addEventListener('input', function () {
+        updateSelectedLineText(elInput.value)
+        renderMeme()
+    })
 
 }
 
@@ -79,15 +84,17 @@ function drawRect() {
 
     gCtx.lineWidth = 1
     gCtx.strokeStyle = 'purple'
-    gCtx.rect(pos.x - line.width, pos.y - line.size, line.width * 2, line.size * 2)
+    gCtx.fillStyle = 'rgba(255, 255, 255, 0.3)'
+    gCtx.rect(pos.x - line.width / 2 - 5, pos.y - line.size / 2 - 5, line.width + 10, line.size + 10)
     gCtx.stroke()
+    gCtx.fill()
 
 }
 
 function addTextLine() {
     const elColorInput = document.querySelector('.fill-color')
 
-    setTextLine('NewLine', gSize, elColorInput.value)
+    setTextLine('NewLine', 40, elColorInput.value)
 
     setSelectedLine(gMeme.lines.length - 1)
     renderMeme()
@@ -99,31 +106,26 @@ function onDownloadImg(elLink) {
 }
 
 function onChangeFontSize(diff) {
-    if (gSize === 80 && diff === 1) {
-        return
-    }
-    if (gSize === 16 && diff === -1) {
-        return
-    }
-
-    gSize += 2 * diff
+    updateLineFontSize(diff)
+    renderMeme()
 }
 
 
 
-function onSelectedLine(diff) {
-    if (getSelectedLineIdx() === gMeme.lines.length - 1 && diff === 1) {
-        return
+function onSelectedLine() {
+    setSelectedLine(getSelectedLineIdx() + 1)
+    if (getSelectedLineIdx() === getMemeLinesCount() || !getSelectedLineIdx()) {
+        setSelectedLine(0)
     }
-    if (getSelectedLineIdx() === 0 && diff === -1) {
-        return
-    }
+    console.log(getSelectedLineIdx())
+    const elInput = document.querySelector('.line-txt-input')
+    elInput.value = getSelectedLineText()
+    elInput.addEventListener('input', function () {
+        updateSelectedLineText(elInput.value)
+        renderMeme()
+    })
 
-    setSelectedLine(getSelectedLineIdx() + diff)
-    updateSelectedLineDisplay()
-    drawRect()
     renderMeme()
-
 }
 
 
@@ -131,7 +133,6 @@ function onCanvasClick(ev) {
     const pos = getEvPos(ev)
 
     if (!isLineClicked(pos)) return
-    console.log('true')
     renderMeme()
 
     const idx = getSelectedLineIdx()
@@ -144,20 +145,14 @@ function onCanvasClick(ev) {
         renderMeme()
     })
 
-    elInput.addEventListener('blur', function () {
-        elInput.value = ''
-        setSelectedLine()
-        renderMeme()
-
-    })
-
-
-
-
-
 }
 
-
+function onRemoveLine() {
+    removeLine()
+    const elInput = document.querySelector('.line-txt-input')
+    elInput.value = ''
+    renderMeme()
+}
 
 function getEvPos(ev) {
 
@@ -181,5 +176,12 @@ function addListeners() {
     window.addEventListener('resize', () => {
         resizeCanvas()
         renderMeme()
+    })
+    const elInput = document.querySelector('.line-txt-input')
+    elInput.addEventListener('blur', function () {
+        elInput.value = ''
+        setSelectedLine()
+        renderMeme()
+
     })
 }

@@ -38,11 +38,33 @@ function setImg(id) {
     ]
 }
 
+function removeLine() {
+    const idx = getSelectedLineIdx()
+    console.log(idx)
+    gMeme.lines.splice(idx, 1)
+}
+
+function updateLineFontSize(diff) {
+    if (gMeme.lines[getSelectedLineIdx()].size === 80 && diff === 1) {
+        return
+    }
+    if (gMeme.lines[getSelectedLineIdx()].size === 16 && diff === -1) {
+        return
+    }
+    gMeme.lines[getSelectedLineIdx()].size += diff * 2
+
+}
+
+function getMemeLinesCount() {
+    return gMeme.lines.length
+}
+
 function updateSelectedLineText(text) {
     gMeme.lines[getSelectedLineIdx()].txt = text
 }
 
 function getSelectedLineText() {
+    if (!getSelectedLineIdx() && getSelectedLineIdx() !== 0) return null
     return gMeme.lines[getSelectedLineIdx()].txt
 }
 
