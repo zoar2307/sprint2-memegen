@@ -3,6 +3,8 @@
 var gElCanvas
 var gCtx
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
+let gLastPos
+
 
 
 function onInit() {
@@ -30,17 +32,8 @@ function renderMeme(src = 'meme-imgs/meme-imgs (square)/1.jpg') {
         gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
         gMeme.lines.forEach((line, idx) => {
 
-            if (idx === 0) {
-                x = gElCanvas.width / 2
-                y = 40
-            } else if (idx === 1) {
-                x = gElCanvas.width / 2
-                y = gElCanvas.height - 40
-            } else if (idx > 1) {
-                x = gElCanvas.width / 2
-                y = gElCanvas.height / 2
-            }
-            onDrawText(line.txt, line.size, line.color, x, y, idx)
+
+            onDrawText(line.txt, line.size, line.color, idx)
             if (idx === gMeme.selectedLineIdx) {
                 drawRect()
 
@@ -50,8 +43,8 @@ function renderMeme(src = 'meme-imgs/meme-imgs (square)/1.jpg') {
     }
 }
 
-function onDrawText(text, size = 40, color = 'white', x, y, idx) {
-
+function onDrawText(text, size = 40, color = 'white', idx) {
+    const pos = getLineCoords(idx)
     gCtx.lineWidth = 2.
     gCtx.strokeStyle = 'black'
 
@@ -60,10 +53,9 @@ function onDrawText(text, size = 40, color = 'white', x, y, idx) {
     gCtx.textAlign = 'center'
     gCtx.textBaseline = 'middle'
 
-    gCtx.fillText(text, x, y)
-    gCtx.strokeText(text, x, y)
+    gCtx.fillText(text, pos.x, pos.y)
+    gCtx.strokeText(text, pos.x, pos.y)
 
-    setLineCoords(x, y, idx)
     setLineTextWidth(gCtx.measureText(text).width, idx)
 
     const elInput = document.querySelector('.line-txt-input')
@@ -101,8 +93,13 @@ function addTextLine() {
 }
 
 function onDownloadImg(elLink) {
-    const imgContent = gElCanvas.toDataURL('image/jpeg')
-    elLink.href = imgContent
+    setSelectedLine()
+    renderMeme()
+    setTimeout(() => {
+        const imgContent = gElCanvas.toDataURL('image/jpeg')
+        elLink.href = imgContent
+    }, 1000)
+
 }
 
 function onChangeFontSize(diff) {
@@ -173,6 +170,8 @@ function getEvPos(ev) {
 }
 
 function addListeners() {
+    addMouseListeners()
+    addTouchListeners()
     window.addEventListener('resize', () => {
         resizeCanvas()
         renderMeme()
@@ -184,4 +183,46 @@ function addListeners() {
         renderMeme()
 
     })
+}
+
+
+function onDown(ev) {
+    const pos = getEvPos(ev)
+
+    if (!isLineClicked(pos)) return
+    setLineDrag(true)
+
+    gLastPos = pos
+    document.body.style.cursor = 'grabbing'
+}
+
+function onMove(ev) {
+    const line = getLine(getSelectedLineIdx())
+    const isDrag = line.isDrag
+    if (!isDrag) return
+
+    const pos = getEvPos(ev)
+    const dx = pos.x - gLastPos.x
+    const dy = pos.y - gLastPos.y
+    moveLine(dx, dy)
+    gLastPos = pos
+    renderMeme()
+}
+
+function onUp() {
+    setLineDrag(false)
+    document.body.style.cursor = 'grab'
+}
+
+
+function addMouseListeners() {
+    gElCanvas.addEventListener('mousedown', onDown)
+    gElCanvas.addEventListener('mousemove', onMove)
+    gElCanvas.addEventListener('mouseup', onUp)
+}
+
+function addTouchListeners() {
+    gElCanvas.addEventListener('touchstart', onDown)
+    gElCanvas.addEventListener('touchmove', onMove)
+    gElCanvas.addEventListener('touchend', onUp)
 }

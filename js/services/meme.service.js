@@ -20,13 +20,22 @@ function getMeme() {
 }
 
 function setTextLine(txt, size, color) {
+    let pos
+    if (getMemeLinesCount() === 0) {
+        pos = { x: gElCanvas.width / 2, y: 40 }
+    } else if (getMemeLinesCount() === 1) {
+        pos = { x: gElCanvas.width / 2, y: -40 }
+    } else if (getMemeLinesCount() > 1) {
+        pos = { x: gElCanvas.width / 2, y: gElCanvas.height / 2 }
+    }
     gMeme.lines.push(
         {
             txt,
-            pos: {},
+            pos,
             width: 0,
             size,
             color,
+            isDrag: false,
         }
     )
 }
@@ -36,6 +45,11 @@ function setImg(id) {
     gMeme.lines = [
 
     ]
+}
+
+
+function setLineDrag(isDrag) {
+    gMeme.lines[getSelectedLineIdx()].isDrag = isDrag
 }
 
 function removeLine() {
@@ -54,6 +68,13 @@ function updateLineFontSize(diff) {
     gMeme.lines[getSelectedLineIdx()].size += diff * 2
 
 }
+
+function moveLine(dx, dy) {
+    gMeme.lines[getSelectedLineIdx()].pos.x += dx
+    gMeme.lines[getSelectedLineIdx()].pos.y += dy
+}
+
+
 
 function getMemeLinesCount() {
     return gMeme.lines.length
@@ -86,6 +107,10 @@ function setLineCoords(x, y, idx) {
 
 function getSelectedLineCoords() {
     return gMeme.lines[getSelectedLineIdx()].pos
+}
+
+function getLineCoords(idx) {
+    return gMeme.lines[idx].pos
 }
 
 function setSelectedLine(idx) {
