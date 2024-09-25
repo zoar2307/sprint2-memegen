@@ -11,7 +11,14 @@ function onInit() {
     gCtx = gElCanvas.getContext('2d')
     renderGallery()
     renderMeme()
+    resizeCanvas()
+    addListeners()
+}
 
+function resizeCanvas() {
+    const elContainer = document.querySelector('.main-canvas')
+    gElCanvas.width = elContainer.offsetWidth
+    gElCanvas.height = elContainer.offsetHeight
 }
 
 function renderMeme(src = 'meme-imgs/meme-imgs (square)/1.jpg') {
@@ -49,7 +56,7 @@ function onDrawText(text, size = 40, color = 'white', x, y, idx) {
     gCtx.strokeStyle = 'black'
 
     gCtx.fillStyle = color
-    gCtx.font = `${size}px Arial`
+    gCtx.font = `${size}px Impact`
     gCtx.textAlign = 'center'
     gCtx.textBaseline = 'middle'
 
@@ -82,7 +89,6 @@ function addTextLine() {
     setTextLine('NewLine', gSize, elColorInput.value)
 
     setSelectedLine(gMeme.lines.length - 1)
-    updateSelectedLineDisplay()
     renderMeme()
 }
 
@@ -100,7 +106,6 @@ function onChangeFontSize(diff) {
     }
 
     gSize += 2 * diff
-    updateFontSizeDisplay()
 }
 
 
@@ -169,4 +174,11 @@ function getEvPos(ev) {
         }
     }
     return pos
+}
+
+function addListeners() {
+    window.addEventListener('resize', () => {
+        resizeCanvas()
+        renderMeme()
+    })
 }

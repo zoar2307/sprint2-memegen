@@ -12,7 +12,9 @@
 @import url('components/main-header.css');
 @import url('components/logo.css');
 @import url('components/main-nav.css');
+@import url('components/burger.css');
 @import url('components/main-editor-page.css');
+@import url('components/mian-canvas.css');
 @import url('components/gallery-header.css');
 @import url('components/main-gallery-page.css');
 @import url('components/main-about-page.css');

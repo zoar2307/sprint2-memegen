@@ -1,4 +1,9 @@
 @font-face {
-    /* font-family: eurofurence;
-    src: url(/fonts/eurofurence/eurof55.ttf); */
+    font-family: Montserrat;
+    src: url(/fonts/Montserrat/Montserrat-Regular.ttf);
+}
+
+@font-face {
+    font-family: Londira;
+    src: url(/fonts/Londrina_Outline/LondrinaOutline-Regular.ttf);
 }

@@ -11,5 +11,7 @@
 
 
     /* Breakpoints */
-    --break-l: 1100px
+    --break-l: 1100px;
+    --break-m: 860px;
+    --break-s: 620px;
 }

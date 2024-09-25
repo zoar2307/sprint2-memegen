@@ -18,11 +18,17 @@
                     <li><a class="active" href="#">Gallery</a></li>
                     <li><a href="#">About</a></li>
                 </ul>
+
             </nav>
+            <div class="burger-container hidden" onclick="onBurgerMenu(this)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
 
         </div>
     </header>
-    <div class="gallery-header main-layout full">
+    <div class="gallery-header main-layout full hidden">
         <div class="flex space-between align-center">
             <div class="search-bar flex space-between align-center">
                 <input type="text" placeholder="Enter search keyword">
@@ -37,7 +43,7 @@
     </div>
 
     <main class="main-content ">
-        <section class="main-editor-page editor-page-layout hidden">
+        <section class="main-editor-page editor-page-layout ">
             <div class="main-canvas">
                 <canvas width="540" height="540" onclick="onCanvasClick(event)"></canvas>
             </div>
@@ -90,8 +96,7 @@
                     <input type="color" name="fill-clr" id="fill-clr" class="fill-color btn">
                 </div>
 
-                <a href=" #" class="btn" onclick="onDownloadImg(this)" download="my-img.jpg">Download Image from
-                    Canvas</a>
+                <a href=" #" class="btn" onclick="onDownloadImg(this)" download="my-img.jpg">Download</a>
 
 
 
@@ -105,7 +110,7 @@
             </div>
         </section>
 
-        <section class="main-gallery-page gallery-layout">
+        <section class="main-gallery-page gallery-layout hidden">
 
         </section>
 
@@ -119,6 +124,7 @@
     <script src="js/services/line.service.js"></script>
     <script src="js/services/gallery.service.js"></script>
     <script src="js/services/meme.service.js"></script>
+    <script src="js/burger-menu.controller.js"></script>
     <script src="js/gallery.controller.js"></script>
     <script src="js/meme.controller.js"></script>
 </body>
