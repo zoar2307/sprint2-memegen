@@ -92,20 +92,20 @@ function updateFontSizeDisplay() {
 }
 
 function onSelectedLine(diff) {
-    if (getSelectedline() === gMeme.lines.length - 1 && diff === 1) {
+    if (getSelectedLine() === gMeme.lines.length - 1 && diff === 1) {
         return
     }
-    if (getSelectedline() === 0 && diff === -1) {
+    if (getSelectedLine() === 0 && diff === -1) {
         return
     }
 
-    setSelectedLine(getSelectedline() + diff)
+    setSelectedLine(getSelectedLine() + diff)
     updateSelectedLineDisplay()
 }
 
 function updateSelectedLineDisplay() {
     const elLineSelectedSpan = document.querySelector('.line-selected-span')
-    elLineSelectedSpan.innerText = getSelectedline() + 1
+    elLineSelectedSpan.innerText = getSelectedLine() + 1
 }
 
 

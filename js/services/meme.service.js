@@ -48,7 +48,7 @@ function setImg(id) {
 }
 
 
-function getSelectedline() {
+function getSelectedLine() {
     return gMeme.selectedLineIdx
 }
 
