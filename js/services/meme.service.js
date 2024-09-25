@@ -54,7 +54,6 @@ function getSelectedLine() {
 
 function setLineCoords(x, y, idx) {
     gMeme.lines[idx].pos = { x, y }
-    console.log(gMeme.lines[idx].pos)
 }
 
 
