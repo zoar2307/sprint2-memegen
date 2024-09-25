@@ -11,8 +11,6 @@ function onInit() {
     gCtx = gElCanvas.getContext('2d')
     renderGallery()
     renderMeme()
-    updateFontSizeDisplay()
-    updateSelectedLineDisplay()
 
 }
 
@@ -105,10 +103,7 @@ function onChangeFontSize(diff) {
     updateFontSizeDisplay()
 }
 
-function updateFontSizeDisplay() {
-    const elFontSizeSpan = document.querySelector('.font-size-span')
-    elFontSizeSpan.innerText = gSize
-}
+
 
 function onSelectedLine(diff) {
     if (getSelectedLineIdx() === gMeme.lines.length - 1 && diff === 1) {
@@ -121,12 +116,8 @@ function onSelectedLine(diff) {
     setSelectedLine(getSelectedLineIdx() + diff)
     updateSelectedLineDisplay()
     drawRect()
-}
-
-function updateSelectedLineDisplay() {
-    const elLineSelectedSpan = document.querySelector('.line-selected-span')
-    elLineSelectedSpan.innerText = getSelectedLineIdx() + 1
     renderMeme()
+
 }
 
 

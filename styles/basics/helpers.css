@@ -39,3 +39,8 @@ flex.gap106 {
 .main-layout.flow-column {
     grid-auto-flow: column;
 }
+
+/* hidden */
+.hidden {
+    display: none;
+}

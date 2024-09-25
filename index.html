@@ -19,11 +19,25 @@
                     <li><a href="#">About</a></li>
                 </ul>
             </nav>
+
         </div>
     </header>
+    <div class="gallery-header main-layout full">
+        <div class="flex space-between align-center">
+            <div class="search-bar flex space-between align-center">
+                <input type="text" placeholder="Enter search keyword">
+                <img src="ICONS/search-icon.png" alt="">
+            </div>
+            <div class="key-words flex space-between align-center">
+                <div class="word">Word</div>
+                <div class="word">Word</div>
+                <div class="word">Word</div>
+            </div>
+        </div>
+    </div>
 
-    <main class="main-content">
-        <section class="main-editor-page editor-page-layout">
+    <main class="main-content ">
+        <section class="main-editor-page editor-page-layout hidden">
             <div class="main-canvas">
                 <canvas width="540" height="540" onclick="onCanvasClick(event)"></canvas>
             </div>
@@ -91,13 +105,13 @@
             </div>
         </section>
 
-        <section class="main-gallery-page">
-            <div class="image-gallery"></div>
+        <section class="main-gallery-page gallery-layout">
+
         </section>
 
         <section class="main-about-page"></section>
     </main>
-    <footer>
+    <footer class="main-footer flex col center full">
         <div class="logo">Memeco</div>
         <small>&copy 2024 - Zohar Yevelkin</small>
     </footer>

@@ -1,0 +1,27 @@
+.gallery-header {
+    background-color: var(--clr-white);
+    width: 100%;
+    height: 100px;
+}
+
+.gallery-header div input {
+    font-size: 1.1875em;
+    padding: 0.315789em;
+    border: none;
+
+}
+
+.search-bar {
+    border-bottom: 2px solid black;
+    width: 265px;
+
+}
+
+.search-bar img {
+    height: 20px;
+    width: 20px;
+}
+
+.key-words {
+    gap: 1.875em;
+}

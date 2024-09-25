@@ -1,0 +1,9 @@
+.main-footer {
+    height: 210px;
+    background-color: var(--clr-primary-base);
+    color: var(--clr-white);
+}
+
+.main-footer div {
+    margin-bottom: 1em;
+}
