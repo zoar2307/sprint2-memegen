@@ -3,6 +3,7 @@
 var gElCanvas
 var gCtx
 var gSize = 40
+var gLastRect = { x: 0, y: 0, width: 0, size: 0 }
 
 function onInit() {
     gElCanvas = document.querySelector('canvas')
@@ -33,15 +34,16 @@ function renderMeme(src = 'meme-imgs/meme-imgs (square)/1.jpg') {
                 x = gElCanvas.width / 2
                 y = gElCanvas.height / 2
             }
-            console.log(idx)
-            onDrawText(line.txt, line.size, line.color, x, y)
-            setLineCoords(x, y, idx)
+            onDrawText(line.txt, line.size, line.color, x, y, idx)
+            if (getLine(idx).isSelected) {
+                drawRect()
+            }
 
         })
     }
 }
 
-function onDrawText(text, size = 40, color = 'white', x, y) {
+function onDrawText(text, size = 40, color = 'white', x, y, idx) {
 
     gCtx.lineWidth = 2.
     gCtx.strokeStyle = 'black'
@@ -51,9 +53,29 @@ function onDrawText(text, size = 40, color = 'white', x, y) {
     gCtx.textAlign = 'center'
     gCtx.textBaseline = 'middle'
 
-
     gCtx.fillText(text, x, y)
     gCtx.strokeText(text, x, y)
+
+    setLineCoords(x, y, idx)
+    setLineTextWidth(gCtx.measureText(text).width, idx)
+    drawRect()
+
+}
+
+
+function drawRect() {
+    const pos = getSelectedLineCoords()
+    const line = getLine(getSelectedLineIdx())
+
+    gLastRect = { x: pos.x, y: pos.y, width: line.width, size: line.size }
+    gCtx.beginPath()
+
+    gCtx.lineWidth = 1
+    gCtx.strokeStyle = 'purple'
+    gCtx.rect(pos.x - line.width, pos.y - line.size, line.width * 2, line.size * 2)
+    gCtx.stroke()
+    //* THE SAME
+
 }
 
 function addTextLine() {
@@ -92,20 +114,23 @@ function updateFontSizeDisplay() {
 }
 
 function onSelectedLine(diff) {
-    if (getSelectedLine() === gMeme.lines.length - 1 && diff === 1) {
+    if (getSelectedLineIdx() === gMeme.lines.length - 1 && diff === 1) {
         return
     }
-    if (getSelectedLine() === 0 && diff === -1) {
+    if (getSelectedLineIdx() === 0 && diff === -1) {
         return
     }
 
-    setSelectedLine(getSelectedLine() + diff)
+    setSelectedLine(getSelectedLineIdx() + diff)
     updateSelectedLineDisplay()
+    drawRect()
 }
 
 function updateSelectedLineDisplay() {
     const elLineSelectedSpan = document.querySelector('.line-selected-span')
-    elLineSelectedSpan.innerText = getSelectedLine() + 1
+    elLineSelectedSpan.innerText = getSelectedLineIdx() + 1
+    renderMeme()
+
 }
 
 
