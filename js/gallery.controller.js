@@ -29,7 +29,7 @@ function renderSavedGallery() {
 
             <div>
             <img onclick="onSetSavedMeme('${m.id}' , '${m.meme.selectedImgId}')" src="${m.url}" alt="">
-            <button onclick="onDeleteSavedMeme('${m.id}')">Delete</button>
+            <button onclick="onDeleteSavedMeme('${m.id}')" class="delete-btn">Delete</button>
             </div>
          `)
 

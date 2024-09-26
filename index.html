@@ -31,8 +31,19 @@
     </header>
     <div class="gallery-header main-layout full ">
         <div class="flex space-between align-center">
-            <div class="flex center search-bar">
+            <div class=" center search-bar">
                 <!-- <input type="text" placeholder="Enter Key"> -->
+                <input list="browsers">
+
+                <datalist id="browsers">
+                    <option value="Internet Explorer">
+                    <option value="Firefox">
+                    <option value="Google Chrome">
+                    <option value="Opera">
+                    <option value="Safari">
+                </datalist>
+
+
 
 
                 <!-- <img src="ICONS/search-icon.png" alt=""> -->
@@ -101,16 +112,15 @@
                     <input type="color" name="fill-clr" id="fill-clr" class="fill-color btn" value="#ffffff">
                 </div>
 
-                <div class="btn btn-share">Share</div>
-                <ul class="clean-list">
-                    <li>
+                <div class="dropdown">
+                    <button onclick="onDropBtn()" class="dropbtn">Share</button>
+                    <div class="dropdown-content">
                         <a href=" #" class="" onclick="onDownloadImg(this)" download="my-img.jpg">Down</a>
-                    </li>
-                    <li>
-                        <a href=" #" class="" onclick="onSaveMeme()">Save</a>
-                    </li>
-                </ul>
 
+                        <a href=" #" class="" onclick="onSaveMeme()">Save</a>
+
+                    </div>
+                </div>
 
 
 

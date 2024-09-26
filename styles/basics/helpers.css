@@ -24,8 +24,8 @@
     align-items: center;
 }
 
-flex.gap106 {
-    gap: 1.06em;
+.self-end {
+    justify-self: end;
 }
 
 /* list helpers */

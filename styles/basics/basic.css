@@ -30,3 +30,10 @@ a {
 ::-webkit-scrollbar {
     display: none;
 }
+
+.delete-btn {
+    width: 100%;
+    background-color: var(--clr-primary-base);
+    border: none;
+    cursor: pointer;
+}
