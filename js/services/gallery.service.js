@@ -20,6 +20,12 @@ function _filterImages(filterBy) {
     return images
 }
 
+function deleteSavedMeme(id) {
+    const idx = gSaveMemes.findIndex(meme => meme.id === id)
+    gSaveMemes.splice(idx, 1)
+    _saveMemes()
+}
+
 function updateFilterBy(key) {
     gQueryOptions.filterBy.keyword = key
 }
@@ -31,4 +37,7 @@ function getImages(options = {}) {
 
 function getSavedMemes() {
     return gSaveMemes
+}
+function getSavedMemesById(id) {
+    return gSaveMemes.find(meme => meme.id === id)
 }

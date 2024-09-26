@@ -93,10 +93,11 @@ function setImg(id) {
     ]
 }
 
-function setSavedImg(meme, id) {
-    gMeme.selectedImgId = id
+function setSavedImg(memeId, imgId) {
 
-    gMeme.lines = meme
+    gMeme.selectedImgId = imgId
+    console.log()
+    gMeme.lines = getSavedMemesById(memeId).meme.lines
 }
 
 

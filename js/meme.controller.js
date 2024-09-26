@@ -122,7 +122,8 @@ function onSelectedLine() {
     if (getSelectedLineIdx() === getMemeLinesCount() || !getSelectedLineIdx()) {
         setSelectedLine(0)
     }
-    console.log(getSelectedLineIdx())
+
+
     const elInput = document.querySelector('.line-txt-input')
     elInput.value = getSelectedLineText()
     elInput.addEventListener('input', function () {
@@ -197,14 +198,7 @@ function addListeners() {
         renderMeme()
     })
 
-    const elBody = document.querySelector('body:not(canvas)')
-    elBody.addEventListener('click', (ev) => {
-        const pos = getEvPos(ev)
-        if (!isLineClicked(pos)) {
-            setSelectedLine()
-            renderMeme()
-        }
-    })
+
 }
 
 function onDown(ev) {
