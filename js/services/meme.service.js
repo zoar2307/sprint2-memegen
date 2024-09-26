@@ -36,7 +36,8 @@ function setTextLine(txt, size, color) {
             size,
             color,
             isDrag: false,
-            textAlignment: 'center'
+            textAlignment: 'center',
+            font: 'Impact',
         }
     )
 }
@@ -48,6 +49,14 @@ function setImg(id) {
     ]
 }
 
+
+
+function setFontLine(idx, font) {
+    gMeme.lines[idx].font = font
+}
+function getFontLine(idx) {
+    return gMeme.lines[idx].font
+}
 
 function setLineDrag(isDrag) {
     gMeme.lines[getSelectedLineIdx()].isDrag = isDrag

@@ -46,11 +46,12 @@ function renderMeme(src = 'meme-imgs/meme-imgs (square)/1.jpg') {
 function onDrawText(text, size = 40, color = 'white', idx) {
     const pos = getLineCoords(idx)
     const textAlignment = getLineTextAlignment(idx)
+    const fontFam = getFontLine(idx)
     gCtx.lineWidth = 2.
     gCtx.strokeStyle = 'black'
 
     gCtx.fillStyle = color
-    gCtx.font = `${size}px Impact`
+    gCtx.font = `${size}px ${fontFam}`
     gCtx.textAlign = `${textAlignment}`
     gCtx.textBaseline = 'middle'
 
@@ -124,7 +125,10 @@ function onChangeFontSize(diff) {
     renderMeme()
 }
 
-
+function onFontChange(value) {
+    setFontLine(getSelectedLineIdx(), value)
+    renderMeme()
+}
 
 function onSelectedLine() {
     setSelectedLine(getSelectedLineIdx() + 1)
