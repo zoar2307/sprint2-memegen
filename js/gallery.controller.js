@@ -19,13 +19,25 @@ function onSetFilterBy(value) {
 }
 
 function renderSearchOptions() {
-    const elKeyWordList = document.querySelector('.key-words-list')
+    const elKeyWordList = document.querySelector('.key-words')
     const keywords = getKeyWords()
-    const strHtmls = keywords.map(keyword => `
-                            <option value="${keyword}">
+    const selectedKeyWords = keywords.slice(0, 5)
+    let strHtmls = selectedKeyWords.map(keyword => `
+                <div style="font-size:${10 + (keyword[1] + 1) * 2 >= 22 ? 22 : 10 + (keyword[1] + 1) * 2}px ;cursor:pointer;" class="word"
+                onclick="onKeyClicked('${keyword[0]}')">
+                ${keyword[0]}
+                </div>
      `)
 
     elKeyWordList.innerHTML = strHtmls.join('')
+
+}
+
+function onKeyClicked(key) {
+    updateFilterBy(key)
+    updateKeyWordsCount(key)
+    renderGallery()
+    renderSearchOptions()
 
 }
 

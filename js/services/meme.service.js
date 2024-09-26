@@ -21,10 +21,16 @@ var sentences = [
 
 _createMemes()
 var gKeywordSearchCountMap = genKeyWordMap()
-var gKeywordSearchCountMapArray = Object.keys(gKeywordSearchCountMap).map((key) => [key])
+var gKeywordSearchCountMapArray = Object.keys(gKeywordSearchCountMap).map((key) => [key, gKeywordSearchCountMap[key]])
 
 function getKeyWords() {
-    return gKeywordSearchCountMapArray
+    gKeywordSearchCountMapArray = Object.keys(gKeywordSearchCountMap).map((key) => [key, gKeywordSearchCountMap[key]])
+    const selectedKeyWords = gKeywordSearchCountMapArray.splice(0, gKeywordSearchCountMapArray.length)
+    return selectedKeyWords
+}
+
+function updateKeyWordsCount(key) {
+    gKeywordSearchCountMap[key]++
 }
 
 function genKeyWordMap() {
