@@ -6,6 +6,8 @@
     place-items: center;
     color: var(--clr-white);
     transition: box-shadow .4s;
+    padding: 1rem;
+
 }
 
 .main-nav .main-nav-list li:first-child a {
@@ -15,10 +17,7 @@
 }
 
 
-.main-nav .main-nav-list li:last-child a {
-    padding: 1rem;
-
-}
+.main-nav .main-nav-list li:last-child a {}
 
 
 .main-nav-list li a.active {

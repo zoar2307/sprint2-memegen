@@ -71,12 +71,11 @@
         height: 60px;
         display: grid;
         place-items: center;
-        color: var(--clr-white);
         transition: box-shadow .4s;
     }
 
 
-    .main-nav .main-nav-list li:first-child a::after {
+    .main-nav .main-nav-list li a::after {
         content: '';
         border-right: 1px solid var(--clr-secondary--1);
         position: absolute;
@@ -181,6 +180,8 @@
         width: 165px;
 
     }
+
+
 
 }
 

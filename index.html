@@ -15,7 +15,8 @@
             <div class="logo">Memeco</div>
             <nav class="main-nav ">
                 <ul class="main-nav-list clean-list flex align-center">
-                    <li><a class="active" href="#">Gallery</a></li>
+                    <li><a onclick="onGalleryClicked(this)" class="active" href="#">Gallery</a></li>
+                    <li><a onclick="onMemesClicked(this)" class="" href="#">Memes</a></li>
                     <li><a href="#">About</a></li>
                 </ul>
 
@@ -30,10 +31,15 @@
     </header>
     <div class="gallery-header main-layout full ">
         <div class="flex space-between align-center">
-            <div class="search-bar flex space-between align-center">
-                <input type="text" placeholder="Enter search keyword">
-                <img src="ICONS/search-icon.png" alt="">
-            </div>
+            <input list="key-words" id="key-words-choice" name="key-words-choice" />
+
+            <datalist class="key-words-list" id="key-words">
+
+            </datalist>
+
+            <img src="ICONS/search-icon.png" alt="">
+            <button onclick="onRandomMemeClicked()" class="gallery-btn">i'm flexible</button>
+
             <div class="key-words flex space-between align-center">
                 <div class="word">Word</div>
                 <div class="word">Word</div>
@@ -107,6 +113,9 @@
         <section class="main-gallery-page gallery-layout ">
 
         </section>
+        <section class="main-meme-page gallery-layout ">
+
+        </section>
 
         <section class="main-about-page"></section>
     </main>
@@ -115,11 +124,13 @@
         <small>&copy 2024 - Zohar Yevelkin</small>
     </footer>
 
+    <script src="js/utils.js"></script>
     <script src="js/services/line.service.js"></script>
     <script src="js/services/gallery.service.js"></script>
     <script src="js/services/meme.service.js"></script>
     <script src="js/burger-menu.controller.js"></script>
     <script src="js/active-nav.controller.js"></script>
+    <script src="js/random-meme.controller.js"></script>
     <script src="js/gallery.controller.js"></script>
     <script src="js/meme.controller.js"></script>
 </body>

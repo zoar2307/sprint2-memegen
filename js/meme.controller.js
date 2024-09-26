@@ -13,7 +13,7 @@ function onInit() {
     renderMeme()
     renderGallery()
     addListeners()
-
+    renderSearchOptions()
 }
 
 function resizeCanvas() {
@@ -22,7 +22,7 @@ function resizeCanvas() {
     gElCanvas.height = elContainer.offsetHeight
 }
 
-function renderMeme(src = 'meme-imgs/meme-imgs (square)/1.jpg') {
+function renderMeme() {
     const elImg = new Image()
     let x
     let y
@@ -62,6 +62,7 @@ function onDrawText(text, size = 40, color = 'white', idx) {
 
     const elInput = document.querySelector('.line-txt-input')
     elInput.value = getSelectedLineText()
+
     elInput.addEventListener('input', function () {
         updateSelectedLineText(elInput.value)
         renderMeme()
@@ -72,7 +73,6 @@ function onDrawText(text, size = 40, color = 'white', idx) {
 
 function drawRect() {
     const pos = getSelectedLineCoords()
-    let copyPos = pos
     const line = getLine(getSelectedLineIdx())
     const textAlignment = getLineTextAlignment(getSelectedLineIdx())
     console.log(pos)
@@ -93,6 +93,7 @@ function drawRect() {
     //     gCtx.rect(pos.x - line.width / 2 - 5, pos.y - line.size / 2 - 5, line.width + 10, line.size + 10)
 
     // }
+
     gCtx.rect(pos.x - line.width - 5, pos.y - line.size / 2 - 5, line.width * 2 + 10, line.size + 10)
 
     gCtx.stroke()
@@ -113,10 +114,8 @@ function addTextLine() {
 function onDownloadImg(elLink) {
     setSelectedLine()
     renderMeme()
-    setTimeout(() => {
-        const imgContent = gElCanvas.toDataURL('image/jpeg')
-        elLink.href = imgContent
-    }, 1000)
+    const imgContent = gElCanvas.toDataURL('image/jpeg')
+    elLink.href = imgContent
 
 }
 
@@ -150,7 +149,10 @@ function onSelectedLine() {
 function onCanvasClick(ev) {
     const pos = getEvPos(ev)
 
-    if (!isLineClicked(pos)) return
+    if (!isLineClicked(pos)) {
+        setSelectedLine()
+        return
+    }
     renderMeme()
 
 
@@ -217,14 +219,17 @@ function onDown(ev) {
     setLineDrag(true)
 
     gLastPos = pos
-    document.body.style.cursor = 'grabbing'
+
+    gElCanvas.style.cursor = 'grabbing'
 }
 
 function onMove(ev) {
-    if (!getSelectedLineIdx() && getSelectedLineIdx() !== 0) return
     const line = getLine(getSelectedLineIdx())
+    if (!getLine(getSelectedLineIdx()) && getLine(getSelectedLineIdx()) !== 0) return
+
     const isDrag = line.isDrag
     if (!isDrag) return
+
 
     const pos = getEvPos(ev)
     const dx = pos.x - gLastPos.x
@@ -236,7 +241,7 @@ function onMove(ev) {
 
 function onUp() {
     setLineDrag(false)
-    document.body.style.cursor = 'grab'
+    gElCanvas.style.cursor = 'grab'
 }
 
 
@@ -251,3 +256,4 @@ function addTouchListeners() {
     gElCanvas.addEventListener('touchmove', onMove)
     gElCanvas.addEventListener('touchend', onUp)
 }
+

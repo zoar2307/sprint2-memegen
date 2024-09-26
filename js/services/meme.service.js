@@ -13,7 +13,34 @@ var gMeme = {
 
 }
 
+var sentences = [
+    'NICE TRY,MOM',
+    'It\'s Friday...',
+    'HERE WE GO AGAIN',
+]
+
 _createMemes()
+var gKeywordSearchCountMap = genKeyWordMap()
+var gKeywordSearchCountMapArray = Object.keys(gKeywordSearchCountMap).map((key) => [key])
+
+function getKeyWords() {
+    return gKeywordSearchCountMapArray
+}
+
+function genKeyWordMap() {
+    let keywords = []
+    gImgs.forEach(img => {
+        img.keywords.map(key => {
+            keywords.push(key)
+        })
+    })
+    const keywordsMap = keywords.reduce((acc, key) => {
+        if (!acc[key]) acc[key] = 0
+        acc[key] = 0
+        return acc
+    }, {})
+    return keywordsMap
+}
 
 function getMeme() {
     return gImgs.find(meme => meme.id === +gMeme.selectedImgId)
@@ -42,6 +69,14 @@ function setTextLine(txt, size, color) {
     )
 }
 
+function setRandomImg() {
+    gMeme.selectedImgId = getRandomIntInclusive(0, gImgs.length - 1)
+    gMeme.lines = [
+    ]
+    setTextLine(sentences[getRandomIntInclusive(0, sentences.length - 1)], 40, 'white')
+
+}
+
 function setImg(id) {
     gMeme.selectedImgId = id
     gMeme.lines = [
@@ -59,6 +94,7 @@ function getFontLine(idx) {
 }
 
 function setLineDrag(isDrag) {
+    console.log(getSelectedLineIdx())
     gMeme.lines[getSelectedLineIdx()].isDrag = isDrag
 }
 
@@ -139,19 +175,19 @@ function _createMemes() {
     _createMeme('meme-imgs/meme-imgs (square)/3.jpg', ['dog', 'baby'])
     _createMeme('meme-imgs/meme-imgs (square)/4.jpg', ['cat'])
     _createMeme('meme-imgs/meme-imgs (square)/5.jpg', ['baby'])
-    _createMeme('meme-imgs/meme-imgs (square)/6.jpg', [''])
+    _createMeme('meme-imgs/meme-imgs (square)/6.jpg', ['smart'])
     _createMeme('meme-imgs/meme-imgs (square)/7.jpg', ['baby', 'funny'])
-    _createMeme('meme-imgs/meme-imgs (square)/8.jpg', ['trump'])
-    _createMeme('meme-imgs/meme-imgs (square)/9.jpg', ['trump'])
-    _createMeme('meme-imgs/meme-imgs (square)/10.jpg', ['trump'])
-    _createMeme('meme-imgs/meme-imgs (square)/11.jpg', ['trump'])
-    _createMeme('meme-imgs/meme-imgs (square)/12.jpg', ['trump'])
-    _createMeme('meme-imgs/meme-imgs (square)/13.jpg', ['trump'])
-    _createMeme('meme-imgs/meme-imgs (square)/14.jpg', ['trump'])
-    _createMeme('meme-imgs/meme-imgs (square)/15.jpg', ['trump'])
-    _createMeme('meme-imgs/meme-imgs (square)/16.jpg', ['trump'])
-    _createMeme('meme-imgs/meme-imgs (square)/17.jpg', ['trump'])
-    _createMeme('meme-imgs/meme-imgs (square)/18.jpg', ['trump'])
+    _createMeme('meme-imgs/meme-imgs (square)/8.jpg', ['funny'])
+    _createMeme('meme-imgs/meme-imgs (square)/9.jpg', ['funny', 'baby'])
+    _createMeme('meme-imgs/meme-imgs (square)/10.jpg', ['obama'])
+    _createMeme('meme-imgs/meme-imgs (square)/11.jpg', ['funny'])
+    _createMeme('meme-imgs/meme-imgs (square)/12.jpg', ['funny'])
+    _createMeme('meme-imgs/meme-imgs (square)/13.jpg', ['cool'])
+    _createMeme('meme-imgs/meme-imgs (square)/14.jpg', ['cool'])
+    _createMeme('meme-imgs/meme-imgs (square)/15.jpg', ['smart'])
+    _createMeme('meme-imgs/meme-imgs (square)/16.jpg', ['funny'])
+    _createMeme('meme-imgs/meme-imgs (square)/17.jpg', ['putin'])
+    _createMeme('meme-imgs/meme-imgs (square)/18.jpg', ['baz'])
 }
 
 function _createMeme(url, keywords) {
