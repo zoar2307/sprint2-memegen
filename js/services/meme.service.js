@@ -1,7 +1,9 @@
 'use strict'
 
+const SAVE_MEME = 'save_memes'
 
 var gId = 0
+var gSaveMemes
 
 var gMeme = {
     selectedImgId: 5,
@@ -20,6 +22,7 @@ var sentences = [
 ]
 
 _createMemes()
+_loadSaveMemes()
 var gKeywordSearchCountMap = genKeyWordMap()
 var gKeywordSearchCountMapArray = Object.keys(gKeywordSearchCountMap).map((key) => [key, gKeywordSearchCountMap[key]])
 
@@ -88,6 +91,12 @@ function setImg(id) {
     gMeme.lines = [
 
     ]
+}
+
+function setSavedImg(meme, id) {
+    gMeme.selectedImgId = id
+
+    gMeme.lines = meme
 }
 
 
@@ -199,4 +208,31 @@ function _createMemes() {
 function _createMeme(url, keywords) {
     gId++
     gImgs.push({ id: gId, url, keywords })
+}
+
+
+function _loadSaveMemes() {
+    gSaveMemes = loadFromStorage(SAVE_MEME)
+
+    if (gSaveMemes && gSaveMemes.length !== 0) return
+
+    gSaveMemes = []
+
+
+    _saveMemes()
+}
+
+
+function createSavedMeme(url) {
+    gSaveMemes.push({
+        id: makeid(),
+        meme: gMeme,
+        url
+    })
+    _saveMemes()
+
+}
+
+function _saveMemes() {
+    saveToStorage(SAVE_MEME, gSaveMemes)
 }

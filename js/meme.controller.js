@@ -12,6 +12,8 @@ function onInit() {
     gCtx = gElCanvas.getContext('2d')
     renderMeme()
     renderGallery()
+    renderSavedGallery()
+
     addListeners()
     renderSearchOptions()
 }
@@ -31,7 +33,6 @@ function renderMeme() {
     elImg.onload = () => {
         gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
         gMeme.lines.forEach((line, idx) => {
-
 
             onDrawText(line.txt, line.size, line.color, idx)
             if (idx === gMeme.selectedLineIdx) {
@@ -67,9 +68,7 @@ function onDrawText(text, size = 40, color = 'white', idx) {
         updateSelectedLineText(elInput.value)
         renderMeme()
     })
-
 }
-
 
 function drawRect() {
     const pos = getSelectedLineCoords()
@@ -85,21 +84,10 @@ function drawRect() {
     gCtx.strokeStyle = 'purple'
     gCtx.fillStyle = 'rgba(255, 255, 255, 0.3)'
 
-    // if (textAlignment === 'start') {
-    //     gCtx.rect(pos.x - 5, pos.y - line.size / 2 - 5, line.width + 10, line.size + 10)
-    // } else if (textAlignment === 'end') {
-    //     gCtx.rect(pos.x - line.width - 5, pos.y - line.size / 2 - 5, line.width + 10, line.size + 10)
-    // } else if (textAlignment === 'center') {
-    //     gCtx.rect(pos.x - line.width / 2 - 5, pos.y - line.size / 2 - 5, line.width + 10, line.size + 10)
-
-    // }
-
     gCtx.rect(pos.x - line.width - 5, pos.y - line.size / 2 - 5, line.width * 2 + 10, line.size + 10)
 
     gCtx.stroke()
     gCtx.fill()
-
-
 }
 
 function addTextLine() {
@@ -207,10 +195,17 @@ function addListeners() {
         elInput.value = ''
         setSelectedLine()
         renderMeme()
+    })
 
+    const elBody = document.querySelector('body:not(canvas)')
+    elBody.addEventListener('click', (ev) => {
+        const pos = getEvPos(ev)
+        if (!isLineClicked(pos)) {
+            setSelectedLine()
+            renderMeme()
+        }
     })
 }
-
 
 function onDown(ev) {
     const pos = getEvPos(ev)
@@ -255,5 +250,16 @@ function addTouchListeners() {
     gElCanvas.addEventListener('touchstart', onDown)
     gElCanvas.addEventListener('touchmove', onMove)
     gElCanvas.addEventListener('touchend', onUp)
+}
+
+function onSaveMeme() {
+    const canvasData = gElCanvas.toDataURL('image/jpeg')
+
+
+    function onSuccess(uploadedImgUrl) {
+        createSavedMeme(uploadedImgUrl)
+    }
+
+    uploadImg(canvasData, onSuccess)
 }
 

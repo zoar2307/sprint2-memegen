@@ -101,7 +101,15 @@
                     <input type="color" name="fill-clr" id="fill-clr" class="fill-color btn" value="#ffffff">
                 </div>
 
-                <a href=" #" class="btn" onclick="onDownloadImg(this)" download="my-img.jpg">Download</a>
+                <div class="btn btn-share">Share</div>
+                <ul class="clean-list">
+                    <li>
+                        <a href=" #" class="" onclick="onDownloadImg(this)" download="my-img.jpg">Down</a>
+                    </li>
+                    <li>
+                        <a href=" #" class="" onclick="onSaveMeme()">Save</a>
+                    </li>
+                </ul>
 
 
 
@@ -112,7 +120,7 @@
         <section class="main-gallery-page gallery-layout ">
 
         </section>
-        <section class="main-meme-page gallery-layout ">
+        <section class="main-saved-page gallery-layout hidden">
 
         </section>
 
@@ -124,6 +132,8 @@
     </footer>
 
     <script src="js/utils.js"></script>
+    <script src="js/services/upload.service.js"></script>
+    <script src="js/services/storage.service.js"></script>
     <script src="js/services/line.service.js"></script>
     <script src="js/services/gallery.service.js"></script>
     <script src="js/services/meme.service.js"></script>

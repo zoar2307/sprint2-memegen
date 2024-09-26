@@ -29,3 +29,6 @@ function getImages(options = {}) {
     return _filterImages(filterBy)
 }
 
+function getSavedMemes() {
+    return gSaveMemes
+}

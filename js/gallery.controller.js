@@ -18,6 +18,43 @@ function onSetFilterBy(value) {
     renderGallery()
 }
 
+
+
+
+function renderSavedGallery() {
+    const elSaveMemesPage = document.querySelector('.main-saved-page')
+    const memes = getSavedMemes()
+    console.log(memes)
+    const strHtmls = memes.map(m =>
+        `
+            <img onclick="onSetSavedMeme(...${m.meme.lines} , '${m.meme.selectedImgId}')" src="${m.url}" alt="" onclick="onImgSelected('${m.meme.id}')">
+         `)
+
+    elSaveMemesPage.innerHTML = strHtmls.join('')
+}
+
+function onSetSavedMeme({ meme }, id) {
+    const elEditorPage = document.querySelector('.main-editor-page')
+    const elGallery = document.querySelector('.main-gallery-page')
+    const elLiA = document.querySelector('.main-nav-list li a.active')
+    const elGalleryHeader = document.querySelector('.gallery-header')
+    elEditorPage.classList.remove('hidden')
+    elLiA.classList.remove('active')
+    elGallery.classList.add('hidden')
+    elGalleryHeader.classList.add('hidden')
+    setSavedImg(meme, id)
+
+    renderMeme()
+    resizeCanvas()
+}
+
+function onSetFilterBy(value) {
+    console.log(value)
+    gQueryOptions.filterBy.keyword = value
+
+}
+
+
 function renderSearchOptions() {
     const elKeyWordList = document.querySelector('.key-words')
     const keywords = getKeyWords()
