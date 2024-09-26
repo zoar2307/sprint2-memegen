@@ -31,22 +31,23 @@
     </header>
     <div class="gallery-header main-layout full ">
         <div class="flex space-between align-center">
-            <div class=" center search-bar">
+            <div class="flex center search-bar">
                 <!-- <input type="text" placeholder="Enter Key"> -->
-                <input list="browsers">
+                <div>
+                    <input list="browsers">
 
-                <datalist id="browsers">
-                    <option value="Internet Explorer">
-                    <option value="Firefox">
-                    <option value="Google Chrome">
-                    <option value="Opera">
-                    <option value="Safari">
-                </datalist>
+                    <datalist id="browsers">
+                        <option value="Internet Explorer">
+                        <option value="Firefox">
+                        <option value="Google Chrome">
+                        <option value="Opera">
+                        <option value="Safari">
+                    </datalist>
+                </div>
 
 
 
-
-                <!-- <img src="ICONS/search-icon.png" alt=""> -->
+                <img src="ICONS/search-icon.png" alt="">
                 <button onclick="onRandomMemeClicked()" class="gallery-btn">i'm flexible</button>
             </div>
             <div class="key-words flex space-between align-center">
@@ -57,6 +58,7 @@
 
         </div>
     </div>
+
 
     <main class="main-content ">
         <section class="main-editor-page editor-page-layout hidden">
@@ -102,6 +104,7 @@
                 </div>
 
 
+
                 <div class="flex center color-mod">
                     <select onchange="onFontChange(this.value)" class="" name="" id="">
                         <option value="Impact">Impact</option>
@@ -126,6 +129,7 @@
 
             </div>
         </section>
+
 
         <section class="main-gallery-page gallery-layout ">
 
