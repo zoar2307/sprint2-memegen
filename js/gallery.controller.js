@@ -66,9 +66,9 @@ function onDeleteSavedMeme(id) {
 function renderSearchOptions() {
     const elKeyWordList = document.querySelector('.key-words')
     const keywords = getKeyWords()
-    const selectedKeyWords = keywords.slice(0, keywords.length)
+    const selectedKeyWords = keywords.slice(0, 5)
     let strHtmls = selectedKeyWords.map(keyword => `
-                <div style="font-size:${10 + (keyword[1] + 1) * 2 >= 22 ? 22 : 10 + (keyword[1] + 1) * 2}px ;cursor:pointer;" class="word"
+                <div style="font-size:${10 + (keyword[1] + 1) * 1 >= 32 ? 32 : 10 + (keyword[1] + 1) * 1}px ;cursor:pointer;" class="word"
                 onclick="onKeyClicked('${keyword[0]}')">
                 ${keyword[0]}
                 </div>
@@ -78,11 +78,35 @@ function renderSearchOptions() {
 
 }
 
+function renderInputOptions() {
+    const elKeyWordList = document.querySelector('datalist')
+    const keywords = getKeyWords()
+    const selectedKeyWords = keywords.slice(0, keywords.length)
+    let strHtmls = selectedKeyWords.map(keyword => `
+                                        <option value="${keyword[0]}">
+     `)
+
+    elKeyWordList.innerHTML = strHtmls.join('')
+}
 function onKeyClicked(key) {
     updateFilterBy(key)
     updateKeyWordsCount(key)
     renderGallery()
     renderSearchOptions()
+
+}
+
+function onFilterInput(key) {
+    updateFilterBy(key)
+    updateKeyWordsCount(key)
+    renderGallery()
+}
+
+function onClearInput() {
+    const elFilterInput = document.querySelector('.filter-input')
+    elFilterInput.value = ''
+    updateFilterBy('')
+    renderGallery()
 
 }
 

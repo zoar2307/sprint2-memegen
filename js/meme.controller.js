@@ -16,6 +16,7 @@ function onInit() {
 
     addListeners()
     renderSearchOptions()
+    renderInputOptions()
 }
 
 function resizeCanvas() {

@@ -34,26 +34,26 @@
             <div class="flex center search-bar">
                 <!-- <input type="text" placeholder="Enter Key"> -->
                 <div>
-                    <input list="browsers">
+                    <input class="filter-input" list="browsers" oninput="onFilterInput(this.value)">
 
                     <datalist id="browsers">
-                        <option value="Internet Explorer">
-                        <option value="Firefox">
-                        <option value="Google Chrome">
-                        <option value="Opera">
-                        <option value="Safari">
+                        <option value="trump">
+
                     </datalist>
                 </div>
 
 
 
-                <img src="ICONS/search-icon.png" alt="">
+                <button onclick="onClearInput()" class="gallery-clear-btn">Clear</button>
                 <button onclick="onRandomMemeClicked()" class="gallery-btn">i'm flexible</button>
             </div>
             <div class="key-words flex space-between align-center">
                 <div class="word">Word</div>
                 <div class="word">Word</div>
                 <div class="word">Word</div>
+            </div>
+            <div class="open-more">
+                more
             </div>
 
         </div>
