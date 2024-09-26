@@ -74,9 +74,6 @@ function onDrawText(text, size = 40, color = 'white', idx) {
 function drawRect() {
     const pos = getSelectedLineCoords()
     const line = getLine(getSelectedLineIdx())
-    const textAlignment = getLineTextAlignment(getSelectedLineIdx())
-    console.log(pos)
-    console.log(textAlignment)
 
 
     gCtx.beginPath()
@@ -270,6 +267,21 @@ function onSaveMeme() {
 
     function onSuccess(uploadedImgUrl) {
         createSavedMeme(uploadedImgUrl)
+    }
+
+    uploadImg(canvasData, onSuccess)
+}
+
+
+function onShareToFB() {
+
+    const canvasData = gElCanvas.toDataURL('image/jpeg')
+
+
+    function onSuccess(uploadedImgUrl) {
+        const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}`)
+
     }
 
     uploadImg(canvasData, onSuccess)

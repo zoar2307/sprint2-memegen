@@ -110,7 +110,6 @@ function getFontLine(idx) {
 }
 
 function setLineDrag(isDrag) {
-    console.log(getSelectedLineIdx())
     gMeme.lines[getSelectedLineIdx()].isDrag = isDrag
 }
 
