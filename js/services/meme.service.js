@@ -1,9 +1,12 @@
 'use strict'
 
 const SAVE_MEME = 'save_memes'
+const SAVE_FILTER = 'save_filters'
 
 var gId = 0
 var gSaveMemes
+var gKeywordSearchCountMap
+
 
 var gMeme = {
     selectedImgId: 5,
@@ -23,7 +26,7 @@ var sentences = [
 
 _createMemes()
 _loadSaveMemes()
-var gKeywordSearchCountMap = genKeyWordMap()
+_loadSaveInputOptions()
 var gKeywordSearchCountMapArray = Object.keys(gKeywordSearchCountMap).map((key) => [key, gKeywordSearchCountMap[key]])
 
 function getKeyWords() {
@@ -34,6 +37,7 @@ function getKeyWords() {
 
 function updateKeyWordsCount(key) {
     gKeywordSearchCountMap[key]++
+    _saveInputOption()
 }
 
 function genKeyWordMap() {
@@ -285,4 +289,24 @@ function createSavedMeme(url) {
 
 function _saveMemes() {
     saveToStorage(SAVE_MEME, gSaveMemes)
+}
+
+
+
+
+function _loadSaveInputOptions() {
+    gKeywordSearchCountMap = loadFromStorage(SAVE_FILTER)
+
+    if (gKeywordSearchCountMap) return
+
+    gKeywordSearchCountMap = genKeyWordMap()
+
+
+    _saveInputOption()
+}
+
+
+
+function _saveInputOption() {
+    saveToStorage(SAVE_FILTER, gKeywordSearchCountMap)
 }

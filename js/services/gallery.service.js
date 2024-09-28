@@ -38,3 +38,5 @@ function getSavedMemes() {
 function getSavedMemesById(id) {
     return gSaveMemes.find(meme => meme.id === id)
 }
+
+
