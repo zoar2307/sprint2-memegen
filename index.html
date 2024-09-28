@@ -42,10 +42,11 @@
                     </datalist>
                 </div>
 
+                <div class="flex center">
+                    <button onclick="onClearInput()" class="gallery-clear-btn">Clear</button>
+                    <button onclick="onRandomMemeClicked()" class="gallery-btn">i'm flexible</button>
+                </div>
 
-
-                <button onclick="onClearInput()" class="gallery-clear-btn">Clear</button>
-                <button onclick="onRandomMemeClicked()" class="gallery-btn">i'm flexible</button>
             </div>
             <div class="key-words flex space-between align-center">
                 <div class="word">Word</div>
@@ -67,7 +68,7 @@
             </div>
             <div class="main-edit-tools flex col">
                 <div>
-                    <input class="line-txt-input" type="text" placeholder="Click on line or add one">
+                    <!-- <input class="line-txt-input" type="text" placeholder="Click on line or add one"> -->
                 </div>
                 <div class="flex center line-mod">
                     <button class="line-selector  btn " onclick="onSelectedLine()">
@@ -95,7 +96,7 @@
                         <img src="ICONS/align-to-left.png" alt="" onclick="onAlignText('end')">
                     </button>
                     <button class="btn">
-                        <img src="ICONS/center-text-alignment.png" alt="" onclick="onAlignText('center')">>
+                        <img src="ICONS/center-text-alignment.png" alt="" onclick="onAlignText('center')">
                     </button>
                     <button class="btn">
                         <img src="ICONS/align-to-right.png" alt="" onclick="onAlignText('start')">
@@ -111,8 +112,13 @@
                         <option value="Verdana">Verdana</option>
                         <option value="Ariel">Ariel</option>
                     </select>
-                    <div class="btn"><img src="ICONS/text stroke.png" alt=""></div>
-                    <input type="color" name="fill-clr" id="fill-clr" class="fill-color btn" value="#ffffff">
+                    <!-- <div class="btn"><img src="ICONS/text stroke.png" alt=""></div> -->
+                    <label class="btn" for="colorPicker"><img src="ICONS/text stroke.png" alt="">
+                    </label>
+                    <label class="btn" for="colorPickerFill"><img src="ICONS/paint-board-and-brush.png" alt="">
+                    </label>
+                    <input type="color" value="#1dbbce" class="stroke-color-picker" id="colorPicker">
+                    <input type="color" name="fill-clr" class="fill-color btn" value="#ffffff" id="colorPickerFill">
                 </div>
 
                 <div class="dropdown">

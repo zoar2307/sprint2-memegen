@@ -6,7 +6,7 @@
 
 
 .main-editor-page .main-edit-tools {
-    padding: 0 5em;
+    padding: 0;
 }
 
 .main-editor-page .main-edit-tools .line-txt-input {
@@ -67,4 +67,13 @@
     cursor: pointer;
     width: 221px;
 
+}
+
+
+.stroke-color-picker {
+    display: none;
+}
+
+.fill-color {
+    display: none;
 }

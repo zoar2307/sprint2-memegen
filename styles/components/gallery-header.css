@@ -29,13 +29,12 @@
     color: var(--clr-primary-base);
     border-radius: 1em;
     background-color: var(--clr-white);
-    margin: 0 1em;
+    /* margin: 0 1em; */
     cursor: pointer;
 }
 
 .gallery-header div input {
-    position: relative;
-    z-index: 1;
+
     font-size: 1.1875em;
     padding: 0.315789em;
     border: none;
@@ -47,6 +46,8 @@
 
 
 .search-bar {
+    flex-direction: column;
+    gap: 10px;
     margin-bottom: 1.2em;
 }
 

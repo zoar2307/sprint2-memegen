@@ -62,13 +62,13 @@ function onDrawText(text, size = 40, color = 'white', idx) {
 
     setLineTextWidth(gCtx.measureText(text).width, idx)
 
-    const elInput = document.querySelector('.line-txt-input')
-    elInput.value = getSelectedLineText()
+    // const elInput = document.querySelector('.line-txt-input')
+    // elInput.value = getSelectedLineText()
 
-    elInput.addEventListener('input', function () {
-        updateSelectedLineText(elInput.value)
-        renderMeme()
-    })
+    // elInput.addEventListener('input', function () {
+    //     updateSelectedLineText(elInput.value)
+    //     renderMeme()
+    // })
 }
 
 function drawRect() {
@@ -122,12 +122,12 @@ function onSelectedLine() {
     }
 
 
-    const elInput = document.querySelector('.line-txt-input')
-    elInput.value = getSelectedLineText()
-    elInput.addEventListener('input', function () {
-        updateSelectedLineText(elInput.value)
-        renderMeme()
-    })
+    // const elInput = document.querySelector('.line-txt-input')
+    // elInput.value = getSelectedLineText()
+    // elInput.addEventListener('input', function () {
+    //     updateSelectedLineText(elInput.value)
+    //     renderMeme()
+    // })
 
     renderMeme()
 }
@@ -143,19 +143,19 @@ function onCanvasClick(ev) {
     renderMeme()
 
 
-    const elInput = document.querySelector('.line-txt-input')
-    elInput.value = getSelectedLineText()
-    elInput.addEventListener('input', function () {
-        updateSelectedLineText(elInput.value)
-        renderMeme()
-    })
+    // const elInput = document.querySelector('.line-txt-input')
+    // elInput.value = getSelectedLineText()
+    // elInput.addEventListener('input', function () {
+    //     updateSelectedLineText(elInput.value)
+    //     renderMeme()
+    // })
 
 }
 
 function onRemoveLine() {
     removeLine()
-    const elInput = document.querySelector('.line-txt-input')
-    elInput.value = ''
+    // const elInput = document.querySelector('.line-txt-input')
+    // elInput.value = ''
     renderMeme()
 }
 
@@ -185,35 +185,56 @@ function getEvPos(ev) {
 function addListeners() {
     addMouseListeners()
     addTouchListeners()
+    window.addEventListener('keydown', onKeyDown)
     window.addEventListener('resize', () => {
         resizeCanvas()
         renderMeme()
     })
-    const elInput = document.querySelector('.line-txt-input')
-    elInput.addEventListener('blur', function () {
-        elInput.value = ''
-        setSelectedLine()
-        renderMeme()
-    })
+    // const elInput = document.querySelector('.line-txt-input')
+    // elInput.addEventListener('blur', function () {
+    //     elInput.value = ''
+    //     setSelectedLine()
+    //     renderMeme()
+    // })
 
     window.onclick = function (event) {
         if (!event.target.matches('.dropbtn')) {
-            var dropdowns = document.getElementsByClassName("dropdown-content");
-            var i;
-            for (i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
+            const elDropDownContent = document.getElementsByClassName("dropdown-content");
+            for (let i = 0; i < elDropDownContent.length; i++) {
+                const openDropdown = elDropDownContent[i];
                 if (openDropdown.classList.contains('show')) {
                     openDropdown.classList.remove('show');
                 }
             }
         }
+        if (!event.target.matches('canvas') && !event.target.matches('.btn img') && !event.target.matches('select')) {
+            if (getSelectedLineIdx() || getSelectedLineIdx() === 0) {
+                setSelectedLine()
+                renderMeme()
+
+            }
+        }
     }
-
-
 }
 
 function onDropBtn() {
     document.querySelector(".dropdown-content").classList.toggle("show");
+}
+
+function onKeyDown(ev) {
+    const selectedIdx = getSelectedLineIdx()
+    if (selectedIdx || selectedIdx === 0) {
+        let lineText = getSelectedLineText()
+        if (ev.which > 47 && ev.which < 90 || ev.which === 32) {
+            lineText = `${lineText}${ev.key}`
+            updateSelectedLineText(lineText)
+            renderMeme()
+        }
+        if (ev.which === 8) {
+            updateSelectedLineText(lineText.slice(0, - 1))
+            renderMeme()
+        }
+    }
 }
 
 function onDown(ev) {
