@@ -363,3 +363,28 @@ function onShareToFB() {
     uploadImg(canvasData, onSuccess)
 }
 
+
+function onShare() {
+    const canvasData = gElCanvas.toDataURL('image/jpeg')
+    console.log(canvasData)
+
+
+
+    function onSuccess(uploadedImgUrl) {
+
+        try {
+            navigator.share({
+                title: "My meme",
+                text: "Look at my new meme from MEMECO",
+                url: uploadedImgUrl,
+            });
+            console.log("Data was shared successfully");
+        } catch (err) {
+            console.error("error:", err.message);
+        }
+    }
+
+    uploadImg(canvasData, onSuccess)
+
+
+}
