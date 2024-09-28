@@ -35,7 +35,7 @@ function renderMeme() {
         gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
         gMeme.lines.forEach((line, idx) => {
 
-            onDrawText(line.txt, line.size, line.color, idx)
+            onDrawText(line.txt, line.size, line.color, line.strokeColor, idx)
             if (idx === gMeme.selectedLineIdx) {
                 drawRect()
 
@@ -45,12 +45,13 @@ function renderMeme() {
     }
 }
 
-function onDrawText(text, size = 40, color = 'white', idx) {
+
+function onDrawText(text, size = 40, color = 'white', strokeColor, idx) {
     const pos = getLineCoords(idx)
     const textAlignment = getLineTextAlignment(idx)
     const fontFam = getFontLine(idx)
     gCtx.lineWidth = 2.
-    gCtx.strokeStyle = 'black'
+    gCtx.strokeStyle = strokeColor
 
     gCtx.fillStyle = color
     gCtx.font = `${size}px ${fontFam}`
@@ -88,13 +89,23 @@ function drawRect() {
     gCtx.fill()
 }
 
-function addTextLine() {
-    const elColorInput = document.querySelector('.fill-color')
+function addTextLine(txt = 'NewLine') {
+    const elFillColorInput = document.querySelector('.fill-color')
+    const elStrokeColorInput = document.querySelector('.stroke-color')
 
-    setTextLine('NewLine', 40, elColorInput.value)
+    setTextLine(txt, 40, elFillColorInput.value, elStrokeColorInput.value)
 
     setSelectedLine(gMeme.lines.length - 1)
     renderMeme()
+}
+
+function onColorsChange() {
+    const elFillColorInput = document.querySelector('.fill-color')
+    const elStrokeColorInput = document.querySelector('.stroke-color')
+
+    updateSelectedLinesColors(elFillColorInput.value, elStrokeColorInput.value)
+    renderMeme()
+
 }
 
 function onDownloadImg(elLink) {
@@ -207,7 +218,7 @@ function addListeners() {
                 }
             }
         }
-        if (!event.target.matches('canvas') && !event.target.matches('.btn img') && !event.target.matches('select')) {
+        if (!event.target.matches('canvas') && !event.target.matches('.btn img') && !event.target.matches('select') && !event.target.matches('input')) {
             if (getSelectedLineIdx() || getSelectedLineIdx() === 0) {
                 setSelectedLine()
                 renderMeme()

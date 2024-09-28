@@ -24,6 +24,10 @@
     align-items: center;
 }
 
+.flex.wrap {
+    flex-wrap: wrap;
+}
+
 .self-end {
     justify-self: end;
 }

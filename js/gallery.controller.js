@@ -89,6 +89,8 @@ function renderInputOptions() {
     elKeyWordList.innerHTML = strHtmls.join('')
 }
 function onKeyClicked(key) {
+    const elFilter = document.querySelector('.filter-input')
+    elFilter.value = key
     updateFilterBy(key)
     updateKeyWordsCount(key)
     renderGallery()

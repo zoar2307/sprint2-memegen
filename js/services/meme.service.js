@@ -55,7 +55,7 @@ function getMeme() {
     return gImgs.find(meme => meme.id === +gMeme.selectedImgId)
 }
 
-function setTextLine(txt, size, color) {
+function setTextLine(txt, size, color, strokeColor) {
     let pos
     if (getMemeLinesCount() === 0) {
         pos = { x: gElCanvas.width / 2, y: 40 }
@@ -71,6 +71,7 @@ function setTextLine(txt, size, color) {
             width: 0,
             size,
             color,
+            strokeColor,
             isDrag: false,
             textAlignment: 'center',
             font: 'Impact',
@@ -100,7 +101,10 @@ function setSavedImg(memeId, imgId) {
     gMeme.lines = getSavedMemesById(memeId).meme.lines
 }
 
-
+function updateSelectedLinesColors(color, strokeColor) {
+    gMeme.lines[getSelectedLineIdx()].color = color
+    gMeme.lines[getSelectedLineIdx()].strokeColor = strokeColor
+}
 
 function setFontLine(idx, font) {
     gMeme.lines[idx].font = font

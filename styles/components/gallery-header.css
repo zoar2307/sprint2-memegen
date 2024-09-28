@@ -65,3 +65,7 @@
 .key-words {
     gap: 1.875em;
 }
+
+.open-more a {
+    color: var(--clr-secondary-base);
+}

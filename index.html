@@ -48,13 +48,13 @@
                 </div>
 
             </div>
-            <div class="key-words flex space-between align-center">
+            <div class="key-words flex space-between align-center ">
                 <div class="word">Word</div>
                 <div class="word">Word</div>
                 <div class="word">Word</div>
             </div>
             <div class="open-more">
-                more
+                <a href="#" onclick="onMoreKeywords()">more</a>
             </div>
 
         </div>
@@ -66,9 +66,9 @@
             <div class="main-canvas">
                 <canvas width="540" height="540" onclick="onCanvasClick(event)"></canvas>
             </div>
-            <div class="main-edit-tools flex col">
+            <div class="main-edit-tools flex col center">
                 <div>
-                    <!-- <input class="line-txt-input" type="text" placeholder="Click on line or add one"> -->
+                    <input class="line-txt-input" type="text" placeholder="Click on line or add one">
                 </div>
                 <div class="flex center line-mod">
                     <button class="line-selector  btn " onclick="onSelectedLine()">
@@ -112,16 +112,25 @@
                         <option value="Verdana">Verdana</option>
                         <option value="Ariel">Ariel</option>
                     </select>
-                    <!-- <div class="btn"><img src="ICONS/text stroke.png" alt=""></div> -->
-                    <label class="btn" for="colorPicker"><img src="ICONS/text stroke.png" alt="">
+                    <!-- <label class="btn" for="colorPicker"><img src="ICONS/text stroke.png" alt="">
                     </label>
                     <label class="btn" for="colorPickerFill"><img src="ICONS/paint-board-and-brush.png" alt="">
-                    </label>
-                    <input type="color" value="#1dbbce" class="stroke-color-picker" id="colorPicker">
-                    <input type="color" name="fill-clr" class="fill-color btn" value="#ffffff" id="colorPickerFill">
+                    </label> -->
+                    <input type="color" value="#1dbbce" onchange="onColorsChange()" class="stroke-color btn"
+                        id="colorPicker">
+                    <input type="color" name="fill-clr" onchange="onColorsChange()" class="fill-color btn"
+                        value="#ffffff" id="colorPickerFill">
                 </div>
 
-                <div class="dropdown">
+                <div class="stickers-container flex center">
+                    <button onclick="addTextLine(this.innerText)">☠️</button>
+                    <button onclick="addTextLine(this.innerText)">😀</button>
+                    <button onclick="addTextLine(this.innerText)">🙂‍↔️</button>
+                    <button onclick="addTextLine(this.innerText)">👑</button>
+                    <button onclick="addTextLine(this.innerText)">🙌</button>
+                </div>
+
+                <div class="dropdown ">
                     <button onclick="onDropBtn()" class="dropbtn">Share</button>
                     <div class="dropdown-content">
                         <a href=" #" class="" onclick="onDownloadImg(this)" download="my-img.jpg">Down</a>

@@ -49,8 +49,20 @@
 }
 
 .main-editor-page .main-edit-tools .color-mod {
+    position: relative;
     gap: 1.06em;
     margin-bottom: 1.625em;
+
+
+}
+
+.main-editor-page .main-edit-tools .color-mod .cp {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+
 
 
 }
@@ -70,10 +82,21 @@
 }
 
 
-.stroke-color-picker {
-    display: none;
+.main-editor-page .main-edit-tools .stickers-container {
+    gap: 1.06em;
+    /* height: 63px; */
+    padding: 1.56em;
+    border-radius: 0.6em;
+    width: 100%;
+    border: none;
+    background: var(--clr-white);
+
+    margin-bottom: 10px;
+
 }
 
-.fill-color {
-    display: none;
+.main-editor-page .main-edit-tools .stickers-container button {
+    border: none;
+    background-color: transparent;
+    font-size: 2em;
 }
