@@ -71,8 +71,10 @@ function setTextLine(txt, size, color, strokeColor) {
             width: 0,
             size,
             color,
+            rotate: 0,
             strokeColor,
             isDrag: false,
+            isResize: false,
             textAlignment: 'center',
             font: 'Impact',
         }
@@ -113,8 +115,22 @@ function getFontLine(idx) {
     return gMeme.lines[idx].font
 }
 
-function setLineDrag(isDrag) {
-    gMeme.lines[getSelectedLineIdx()].isDrag = isDrag
+function setLineDrag(drag) {
+    gMeme.lines[getSelectedLineIdx()].isDrag = drag
+}
+function setLineResize(resize) {
+    gMeme.lines[getSelectedLineIdx()].isResize = resize
+}
+
+function updateSelectedLineTextSize(newSize) {
+    gMeme.lines[getSelectedLineIdx()].size = newSize
+}
+
+function updateSelectedLineRotation(newDeg) {
+    gMeme.lines[getSelectedLineIdx()].rotate = newDeg
+}
+function getSelectedLineRotation() {
+    return gMeme.lines[getSelectedLineIdx()].rotate
 }
 
 function removeLine() {

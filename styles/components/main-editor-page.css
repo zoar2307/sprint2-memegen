@@ -3,7 +3,9 @@
 
 }
 
-.main-canvas {}
+.main-canvas {
+    position: static;
+}
 
 
 

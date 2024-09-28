@@ -5,8 +5,9 @@ var gIsMoreOptions = false
 function renderGallery() {
     const elImageGallery = document.querySelector('.main-gallery-page')
     const images = getImages(gQueryOptions)
-    const strHtmls = images.map(img => `
-            <img src="${img.url}" alt="" onclick="onImgSelected('${img.id}')">
+    const strHtmls = images.map((img, idx) => `
+         
+            <img src="${img.url}" alt="" onclick="onImgSelected('${img.id}' )"></img>
          `)
 
     elImageGallery.innerHTML = strHtmls.join('')
@@ -134,6 +135,7 @@ function onClearInput() {
 
 
 function onImgSelected(id) {
+
     const elEditorPage = document.querySelector('.main-editor-page')
     const elGallery = document.querySelector('.main-gallery-page')
     const elLiA = document.querySelector('.main-nav-list li a.active')
@@ -164,3 +166,5 @@ function onMoreKeywords(elMoreText) {
     elMoreKeywordsContainer.classList.toggle('close')
 
 }
+
+

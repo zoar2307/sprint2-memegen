@@ -5,6 +5,7 @@ var gCtx
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 var gLastPos
 var gImageSize
+var gLastScreenX
 
 
 
@@ -36,16 +37,19 @@ function renderMeme() {
             w: this.width,
             h: this.height
         }
+        resizeCanvas()
+
         gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
         gMeme.lines.forEach((line, idx) => {
 
             onDrawText(line.txt, line.size, line.color, line.strokeColor, idx)
             if (idx === gMeme.selectedLineIdx) {
                 drawRect()
-
+                drawArc()
             }
 
         })
+
     }
 }
 
@@ -74,6 +78,7 @@ function onDrawText(text, size = 40, color = 'white', strokeColor, idx) {
         updateSelectedLineText(elInput.value)
         renderMeme()
     })
+
 }
 
 function drawRect() {
@@ -91,6 +96,23 @@ function drawRect() {
 
     gCtx.stroke()
     gCtx.fill()
+}
+
+function drawArc() {
+    const pos = getSelectedLineCoords()
+    const line = getLine(getSelectedLineIdx())
+
+
+    gCtx.beginPath()
+    gCtx.lineWidth = 2
+
+    //* The x,y cords of the center , The radius, The starting angle, The ending angle, in radians
+    // gCtx.arc(x, y, 70, 0, Math.PI) //* draws a circle
+    gCtx.arc(pos.x + line.width + line.size / 8, pos.y + line.size - line.size / 4, line.size / 4, 0, Math.PI * 2) //* draws a circle
+    gCtx.fillStyle = 'black'
+    gCtx.fill()
+    gCtx.strokeStyle = 'purple'
+    gCtx.stroke()
 }
 
 function addTextLine(txt = 'NewLine') {
@@ -213,6 +235,7 @@ function addListeners() {
     })
 
     window.onclick = function (event) {
+
         if (!event.target.matches('.dropbtn')) {
             const elDropDownContent = document.getElementsByClassName("dropdown-content");
             for (let i = 0; i < elDropDownContent.length; i++) {
@@ -222,7 +245,7 @@ function addListeners() {
                 }
             }
         }
-        if (!event.target.matches('canvas') && !event.target.matches('.btn img') && !event.target.matches('select') && !event.target.matches('input')) {
+        if (!event.target.matches('canvas') && !event.target.matches('.btn img') && !event.target.matches('select') && !event.target.matches('.input')) {
             if (getSelectedLineIdx() || getSelectedLineIdx() === 0) {
                 setSelectedLine()
                 renderMeme()
@@ -255,6 +278,12 @@ function onKeyDown(ev) {
 function onDown(ev) {
     const pos = getEvPos(ev)
 
+    if (isCircleClicked(pos)) {
+        setLineResize(true)
+        gElCanvas.style.cursor = 'col-resize'
+        gLastScreenX = ev.screenX
+
+    }
     if (!isLineClicked(pos)) return
     setLineDrag(true)
 
@@ -265,12 +294,22 @@ function onDown(ev) {
 
 function onMove(ev) {
     const line = getLine(getSelectedLineIdx())
+
     if (!getLine(getSelectedLineIdx()) && getLine(getSelectedLineIdx()) !== 0) return
+    const isResize = line.isResize
+
+    if (isResize) {
+        const diff = ev.screenX + (gLastScreenX * -1)
+
+        gLastScreenX = ev.screenX
+        updateSelectedLineTextSize(line.size + diff)
+
+        gElCanvas.style.cursor = 'col-resize'
+        renderMeme()
+    }
 
     const isDrag = line.isDrag
     if (!isDrag) return
-
-
     const pos = getEvPos(ev)
     const dx = pos.x - gLastPos.x
     const dy = pos.y - gLastPos.y
@@ -280,6 +319,7 @@ function onMove(ev) {
 }
 
 function onUp() {
+    setLineResize(false)
     setLineDrag(false)
     gElCanvas.style.cursor = 'grab'
 }

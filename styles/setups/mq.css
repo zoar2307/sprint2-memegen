@@ -45,6 +45,8 @@
     }
 
 
+
+
 }
 
 /* Small  */
@@ -93,12 +95,6 @@
 
 /* Medium  */
 @media (min-width : 860px) {
-    canvas {
-
-        position: absolute;
-        top: 50%;
-        translate: 0 -50%;
-    }
 
 
     .main-layout {
@@ -146,6 +142,9 @@
         grid-template-columns: 1fr 1fr;
         column-gap: 20px;
     }
+
+    .main-canvas {}
+
 
     .main-editor-page {
         position: relative;

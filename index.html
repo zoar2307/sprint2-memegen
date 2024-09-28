@@ -16,7 +16,7 @@
             <nav class="main-nav ">
                 <ul class="main-nav-list clean-list flex align-center">
                     <li><a onclick="onGalleryClicked(this)" class="active" href="#">Gallery</a></li>
-                    <li><a onclick="onMemesClicked(this)" class="" href="#">Memes</a></li>
+                    <li><a onclick="onMemesClicked(this)" class="" href="#">Saved</a></li>
                     <li><a href="#">About</a></li>
                 </ul>
 
@@ -53,7 +53,7 @@
                 <div class="word">Word</div>
                 <div class="word">Word</div>
             </div>
-            <div class="open-more">
+            <div class="open-more close">
                 <a href="#" onclick="onMoreKeywords(this)">more</a>
             </div>
 
@@ -69,12 +69,12 @@
 
     <main class="main-content ">
         <section class="main-editor-page editor-page-layout hidden">
-            <div class="main-canvas">
+            <div class="main-canvas flex center">
                 <canvas width="540" height="540" onclick="onCanvasClick(event)"></canvas>
             </div>
             <div class="main-edit-tools flex col center">
                 <div>
-                    <input class="line-txt-input" type="text" placeholder="Click on line or add one">
+                    <input class="line-txt-input input" type="text" placeholder="Click on line or add one">
                 </div>
                 <div class="flex center line-mod">
                     <button class="line-selector  btn " onclick="onSelectedLine()">
@@ -122,9 +122,9 @@
                     </label>
                     <label class="btn" for="colorPickerFill"><img src="ICONS/paint-board-and-brush.png" alt="">
                     </label> -->
-                    <input type="color" value="#1dbbce" onchange="onColorsChange()" class="stroke-color btn"
+                    <input type="color" value="#1dbbce" onchange="onColorsChange()" class="stroke-color btn input"
                         id="colorPicker">
-                    <input type="color" name="fill-clr" onchange="onColorsChange()" class="fill-color btn"
+                    <input type="color" name="fill-clr" onchange="onColorsChange()" class="fill-color btn input"
                         value="#ffffff" id="colorPickerFill">
                 </div>
 
