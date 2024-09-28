@@ -75,7 +75,7 @@ function onDrawText(text, size = 40, color = 'white', strokeColor, idx) {
     elInput.value = getSelectedLineText()
 
     elInput.addEventListener('input', function () {
-        updateSelectedLineText(elInput.value)
+        // updateSelectedLineText(elInput.value)
         renderMeme()
     })
 
@@ -162,7 +162,7 @@ function onSelectedLine() {
     const elInput = document.querySelector('.line-txt-input')
     elInput.value = getSelectedLineText()
     elInput.addEventListener('input', function () {
-        updateSelectedLineText(elInput.value)
+        // updateSelectedLineText(elInput.value)
         renderMeme()
     })
 
@@ -183,7 +183,7 @@ function onCanvasClick(ev) {
     const elInput = document.querySelector('.line-txt-input')
     elInput.value = getSelectedLineText()
     elInput.addEventListener('input', function () {
-        updateSelectedLineText(elInput.value)
+        // updateSelectedLineText(elInput.value)
         renderMeme()
     })
 
@@ -260,6 +260,7 @@ function onDropBtn() {
 }
 
 function onKeyDown(ev) {
+    ev.preventDefault()
     const selectedIdx = getSelectedLineIdx()
     if (selectedIdx || selectedIdx === 0) {
         let lineText = getSelectedLineText()
