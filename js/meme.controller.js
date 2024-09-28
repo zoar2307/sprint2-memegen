@@ -3,7 +3,8 @@
 var gElCanvas
 var gCtx
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
-let gLastPos
+var gLastPos
+var gImageSize
 
 
 
@@ -22,16 +23,19 @@ function onInit() {
 function resizeCanvas() {
     const elContainer = document.querySelector('.main-canvas')
     gElCanvas.width = elContainer.offsetWidth
-    gElCanvas.height = elContainer.offsetHeight
+    gElCanvas.height = (elContainer.offsetHeight * gImageSize.h) / gImageSize.w
 }
 
 function renderMeme() {
     const elImg = new Image()
-    let x
-    let y
 
     elImg.src = getMeme().url
-    elImg.onload = () => {
+    elImg.onload = function () {
+        gImageSize = {
+            w: this.width,
+            h: this.height
+        }
+        console.log(gImageSize)
         gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
         gMeme.lines.forEach((line, idx) => {
 
@@ -50,7 +54,7 @@ function onDrawText(text, size = 40, color = 'white', strokeColor, idx) {
     const pos = getLineCoords(idx)
     const textAlignment = getLineTextAlignment(idx)
     const fontFam = getFontLine(idx)
-    gCtx.lineWidth = 2.
+    gCtx.lineWidth = 2
     gCtx.strokeStyle = strokeColor
 
     gCtx.fillStyle = color

@@ -31,6 +31,11 @@
 
 }
 
+.gallery-layout img {
+    height: 300px;
+    object-fit: cover;
+}
+
 .gallery-layout.hidden {
     display: hidden;
 }
