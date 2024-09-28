@@ -367,7 +367,6 @@ function onShareToFB() {
 
 function onShare() {
     const canvasData = gElCanvas.toDataURL('image/jpeg')
-    console.log(canvasData)
 
 
 
