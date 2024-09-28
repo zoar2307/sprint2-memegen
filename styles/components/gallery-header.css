@@ -62,10 +62,26 @@
 
 }
 
-.key-words {
+.gallery-header .key-words {
     gap: 1.875em;
+    margin-bottom: 1em;
 }
 
 .open-more a {
     color: var(--clr-secondary-base);
+}
+
+.more-keywords-container.close {
+    display: none;
+}
+
+.more-keywords-container {
+    background-color: var(--clr-white);
+}
+
+
+.more-keywords {
+    flex-direction: column;
+    padding: 1em 0;
+    gap: 5px;
 }

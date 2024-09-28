@@ -14,8 +14,6 @@
 .editor-page-layout {
     display: grid;
 
-    place-items: center;
-    gap: 20px;
 }
 
 .editor-page-layout.hidden {
@@ -32,7 +30,7 @@
 }
 
 .gallery-layout img {
-    height: 300px;
+    height: 150px;
     object-fit: cover;
 }
 

@@ -6,6 +6,8 @@ function onGalleryClicked(elBtnA) {
     const elGallery = document.querySelector('.main-gallery-page')
     const elGalleryHeader = document.querySelector('.gallery-header')
     const elLiA = document.querySelector('.main-nav-list li a.active')
+    const elMoreKeywordsContainer = document.querySelector('.more-keywords-container')
+
     if (elLiA) {
         elLiA.classList.remove('active')
     }
@@ -14,6 +16,8 @@ function onGalleryClicked(elBtnA) {
     elGallery.classList.remove('hidden')
     elBtnA.classList.add('active')
     elGalleryHeader.classList.remove('hidden')
+    elMoreKeywordsContainer.classList.remove('close')
+
     renderGallery()
 }
 
@@ -24,6 +28,7 @@ function onMemesClicked(elBtnA) {
     const elGalleryHeader = document.querySelector('.gallery-header')
     const elLiA = document.querySelector('.main-nav-list li a.active')
     const elEditorPage = document.querySelector('.main-editor-page')
+    const elMoreKeywordsContainer = document.querySelector('.more-keywords-container')
 
     if (elLiA) {
         elLiA.classList.remove('active')
@@ -34,5 +39,6 @@ function onMemesClicked(elBtnA) {
     elBtnA.classList.add('active')
     elGalleryHeader.classList.add('hidden')
     elMemes.classList.remove('hidden')
+    elMoreKeywordsContainer.classList.add('close')
     renderSavedGallery()
 }

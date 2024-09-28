@@ -1,5 +1,6 @@
 'use strict'
 
+var gIsMoreOptions = false
 
 function renderGallery() {
     const elImageGallery = document.querySelector('.main-gallery-page')
@@ -41,6 +42,9 @@ function onSetSavedMeme(memeID, imgId) {
     const elSavedGallery = document.querySelector('.main-saved-page')
     const elLiA = document.querySelector('.main-nav-list li a.active')
     const elGalleryHeader = document.querySelector('.gallery-header')
+    const elMoreKeywordsContainer = document.querySelector('.more-keywords-container')
+
+    elMoreKeywordsContainer.classList.add('close')
     elEditorPage.classList.remove('hidden')
     elLiA.classList.remove('active')
     elGalleryHeader.classList.add('hidden')
@@ -95,6 +99,22 @@ function onKeyClicked(key) {
     updateKeyWordsCount(key)
     renderGallery()
     renderSearchOptions()
+    renderMoreSearchOptions()
+
+}
+
+
+function renderMoreSearchOptions() {
+    const elMoreKeywordssFilter = document.querySelector('.more-keywords')
+    const keywords = getKeyWords()
+    const selectedKeyWords = keywords.slice(5, keywords.length)
+    let strHtmls = selectedKeyWords.map(keyword => `
+                <div style="font-size:${10 + (keyword[1] + 1) * 1 >= 32 ? 32 : 10 + (keyword[1] + 1) * 1}px ;cursor:pointer;" class="word"
+                onclick="onKeyClicked('${keyword[0]}')">
+                ${keyword[0]}
+                </div>
+     `)
+    elMoreKeywordssFilter.innerHTML = strHtmls.join('')
 
 }
 
@@ -118,6 +138,9 @@ function onImgSelected(id) {
     const elGallery = document.querySelector('.main-gallery-page')
     const elLiA = document.querySelector('.main-nav-list li a.active')
     const elGalleryHeader = document.querySelector('.gallery-header')
+    const elMoreKeywordsContainer = document.querySelector('.more-keywords-container')
+
+    elMoreKeywordsContainer.classList.add('close')
     elEditorPage.classList.remove('hidden')
     elLiA.classList.remove('active')
     elGallery.classList.add('hidden')
@@ -125,4 +148,19 @@ function onImgSelected(id) {
     setImg(id)
     renderMeme()
     resizeCanvas()
+}
+
+
+function onMoreKeywords(elMoreText) {
+    gIsMoreOptions = !gIsMoreOptions
+    console.log(gIsMoreOptions)
+    if (gIsMoreOptions) {
+        elMoreText.innerText = 'less'
+    } else {
+        elMoreText.innerText = 'more'
+    }
+
+    const elMoreKeywordsContainer = document.querySelector('.more-keywords-container')
+    elMoreKeywordsContainer.classList.toggle('close')
+
 }

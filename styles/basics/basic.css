@@ -9,11 +9,13 @@ html {
 }
 
 body {
+    position: relative;
     margin: 0;
     font-size: 1rem;
 }
 
 canvas {
+
     background-color: lightblue;
 }
 

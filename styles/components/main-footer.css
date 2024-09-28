@@ -1,7 +1,8 @@
 .main-footer {
-    height: 210px;
+    height: 200px;
     background-color: var(--clr-primary-base);
     color: var(--clr-white);
+
 }
 
 .main-footer div {
