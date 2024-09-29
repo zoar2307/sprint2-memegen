@@ -301,12 +301,17 @@ function onMove(ev) {
 
     if (isResize) {
         const diff = ev.screenX + (gLastScreenX * -1)
+        if (line.size >= 10) {
+            gLastScreenX = ev.screenX
+            updateSelectedLineTextSize(line.size + diff)
 
-        gLastScreenX = ev.screenX
-        updateSelectedLineTextSize(line.size + diff)
+        } else {
+            updateSelectedLineTextSize(10)
+        }
 
         gElCanvas.style.cursor = 'col-resize'
         renderMeme()
+
     }
 
     const isDrag = line.isDrag
