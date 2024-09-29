@@ -16,7 +16,7 @@ function onGalleryClicked(elBtnA) {
     elGallery.classList.remove('hidden')
     elBtnA.classList.add('active')
     elGalleryHeader.classList.remove('hidden')
-    elMoreKeywordsContainer.classList.remove('close')
+    elMoreKeywordsContainer.classList.add('close')
 
     renderGallery()
 }

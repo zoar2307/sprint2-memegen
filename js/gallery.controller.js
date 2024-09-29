@@ -1,6 +1,5 @@
 'use strict'
 
-var gIsMoreOptions = false
 
 function renderGallery() {
     const elImageGallery = document.querySelector('.main-gallery-page')
@@ -154,16 +153,14 @@ function onImgSelected(id) {
 
 
 function onMoreKeywords(elMoreText) {
-    gIsMoreOptions = !gIsMoreOptions
-    console.log(gIsMoreOptions)
-    if (gIsMoreOptions) {
+    const elMoreKeywordsContainer = document.querySelector('.more-keywords-container')
+    elMoreKeywordsContainer.classList.toggle('close')
+
+    if (!elMoreKeywordsContainer.classList.contains('close')) {
         elMoreText.innerText = 'less'
     } else {
         elMoreText.innerText = 'more'
     }
-
-    const elMoreKeywordsContainer = document.querySelector('.more-keywords-container')
-    elMoreKeywordsContainer.classList.toggle('close')
 
 }
 
